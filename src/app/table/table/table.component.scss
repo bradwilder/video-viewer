@@ -1,20 +1,81 @@
-/* Color scheme */
-/* Table striping colors */
-tr.even {
-	background-color: #ddd;
+@import '../../../styles/base/_constants.scss';
+
+table {
+	font-family: $droid-sans-mono;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: left;
+	
+	thead {
+		font-weight: bold;
+		font-size: 11px;
+		color: $secondary-3;
+		
+		th {
+			border: 1px solid $secondary-7;
+		    padding: 4px;
+		}
+	}
+	
+	tbody {
+		font-weight: normal;
+		font-size: 10px;
+		
+		tr {
+			height: 15px;
+			
+			td {
+				border-left: 1px solid $secondary-7;
+			    border-right: 1px solid $secondary-7;
+				padding: 1px 4px;
+				
+				&.pending {
+					text-align: center;
+					
+					& .pending__check {
+						position: relative;
+						vertical-align: middle;
+						cursor: auto;
+						pointer-events: none;
+						margin: 0;
+						padding: 0;
+						
+						&:not(:disabled) {
+							cursor: pointer;
+							pointer-events: auto;
+						}
+						
+						&:not(:checked) {
+							cursor: auto;
+							pointer-events: none;
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
+
+/* Color scheme */
+/* Table striping colors */
 tr.odd {
-	background-color: white;
+	background-color: $secondary-1;
 }
+
+tr.even {
+	background-color: $secondary-2;
+}
+
 
 /* Table sorting colors */
 thead tr th {
-    background-color: #ccc;
+    background-color: $primary-2-alt1;
 }
 
 .headerSortDown, .headerSortUp {
-    background-color: #bbb;
+    background-color: $primary-3-alt1;
 }
 
 

@@ -1,6 +1,6 @@
 .type {
 	&__title {
-		font-family: 'Source Sans Pro', 'Helvetica', sans-serif;
+		font-family: $source-sans-pro;
 		text-transform: uppercase;
 		letter-spacing: .03em;
 		font-weight: lighter;
@@ -15,23 +15,6 @@
 		
 		&--darker {
 			font-weight: normal;
-		}
-	}
-	
-	&__desc {
-		font-family: 'Raleway', sans-serif;
-	}
-	
-	&__label {
-		font-family: 'Droid Sans Mono', monospace;
-		font-weight: normal;
-		
-		&--emphasis {
-			font-weight: bold;
-		}
-		
-		&--upper {
-			text-transform: uppercase;
 		}
 	}
 }

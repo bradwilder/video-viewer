@@ -1,0 +1,39 @@
+/* Color scheme */
+/* Table striping colors */
+tr.even {
+	background-color: #ddd;
+}
+
+tr.odd {
+	background-color: white;
+}
+
+/* Table sorting colors */
+thead tr th {
+    background-color: #ccc;
+}
+
+.headerSortDown, .headerSortUp {
+    background-color: #bbb;
+}
+
+
+/* Table sorting icons */
+tr th {
+	position: relative;
+}
+
+tr th.sortable {
+	cursor: pointer;
+	padding-right: 15px;
+}
+
+tr th span.sortIcon {
+	position: absolute;
+	right: 5px;
+}
+
+tr th span.sortIcon i {
+	position: relative;
+    vertical-align: middle;
+}

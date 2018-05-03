@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from './data.service';
+import { Component } from '@angular/core';
 
 @Component
 ({
@@ -7,17 +6,4 @@ import { DataService } from './data.service';
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit
-{
-	videos: Array<any>;
-	
-	constructor(private dataService: DataService) {}
-	
-	ngOnInit()
-	{
-		this.dataService.getVideos().subscribe((res) =>
-		{
-			return this.videos = res;
-		});
-	}
-}
+export class AppComponent {}

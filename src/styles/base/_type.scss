@@ -1,0 +1,37 @@
+.type {
+	&__title {
+		font-family: 'Source Sans Pro', 'Helvetica', sans-serif;
+		text-transform: uppercase;
+		letter-spacing: .03em;
+		font-weight: lighter;
+		
+		&--wide {
+			letter-spacing: .05em;
+		}
+		
+		&--no-upper {
+			text-transform: none;
+		}
+		
+		&--darker {
+			font-weight: normal;
+		}
+	}
+	
+	&__desc {
+		font-family: 'Raleway', sans-serif;
+	}
+	
+	&__label {
+		font-family: 'Droid Sans Mono', monospace;
+		font-weight: normal;
+		
+		&--emphasis {
+			font-weight: bold;
+		}
+		
+		&--upper {
+			text-transform: uppercase;
+		}
+	}
+}

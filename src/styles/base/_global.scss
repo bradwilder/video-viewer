@@ -1,0 +1,34 @@
+@import './_constants.scss';
+
+html {
+	height: 100%;
+}
+
+body {
+	font-family: 'Source Sans Pro', 'Helvetica', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	/*color: $text-color;*/
+	/*background-color: $background-color;*/
+	height: 100%;
+}
+
+a,
+a:link,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+	/*color: $text-color;*/
+	text-decoration: none;
+	outline: none;
+	border: 0;
+}
+
+a {
+	cursor: pointer;
+}
+
+textarea {
+	resize: vertical;
+	width: 100%;
+}

@@ -39,7 +39,7 @@ router.get('/videos', (req, res) =>
 {
 	connection((db) =>
 	{
-		db.collection('videos').find().toArray().then((videos) =>
+		db.collection('videos').find().sort({fileName: 1}).toArray().then((videos) =>
 		{
 			response.data = videos;
 			res.json(response);

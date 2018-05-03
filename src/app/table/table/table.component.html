@@ -1,0 +1,32 @@
+<h3>Our Table Is Working</h3>
+
+<table id="videoTable" class="videoTable">
+	<thead>
+		<tr>
+			<th>Pend</th>
+			<th class="sortable">Name<span class="sortIcon"><i class="fa fa-sort"></i></span></th>
+			<th class="sortable">Time<span class="sortIcon"><i class="fa fa-sort"></i></span></th>
+			<th class="sortable">Series<span class="sortIcon"><i class="fa fa-sort"></i></span></th>
+			<th class="sortable">Modified<span class="sortIcon"><i class="fa fa-sort"></i></span></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let video of videos">
+			<td class='videoPending'>
+				<span><input type='checkbox' name='pendingCheckBox' class='videoPendingCheck' disabled [checked]="video.pending"></span>
+			</td>
+			<td class='videoName'>
+				<div class='videoNameDiv' style='width: 100%; height: 100%;'>
+					<span class='videoNameDisplayed'>{{ getDisplayName(video) }}</span>
+				</div>
+			</td>
+			<td class='videoTime' data-sortValue=''>{{ getDisplayTime(video) }}</td>
+			<td class='videoSeries'>
+				<div class='videoSeriesDiv' style='width: 100%; height: 100%;'>
+					<span class='seriesDisplayed'>{{ video.series }}</span>
+				</div>
+			</td>
+			<td class='videoLastModified' data-sortValue=''>{{ getLastModified(video) }}</td>
+		</tr>
+	</tbody>
+</table>

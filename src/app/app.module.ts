@@ -7,12 +7,14 @@ import { DataService } from './data.service';
 import { HttpModule } from '@angular/http';
 import { TableComponent } from './table/table/table.component';
 import { VideoService } from './video/video.service';
+import { TableFiltersComponent } from './table/table-filters/table-filters.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TableComponent
+    TableComponent,
+    TableFiltersComponent
   ],
   imports: [
 	BrowserModule,

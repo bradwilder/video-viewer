@@ -1,0 +1,62 @@
+<div id="filterSummary">
+	<input type="checkbox" name="enable" id="enable">
+	<span id="label"></span>
+	<button type="button" id="clear" class="summary-btn clearButton"><i class="fa fa-close"></i></button>
+	<button type="button" id="show" class="summary-btn slideVertical"><i class="fa fa-angle-up"></i></button>
+</div>
+<div id="filterControls">
+	<table id="filterControlsTable">
+		<tbody>
+			<tr>
+				<td>
+					<div class="tableFilter">
+						<input type="checkbox" name="enablePendingCheckBox" id="enablePendingCheckBox">
+						<h5>Pending:</h5>
+						<select id="pendingCombo">
+							<option value="0">Include Pending</option>
+							<option value="1">Exclude Pending</option>
+							<option value="2">Pending Only</option>
+						</select>
+						<button type="button" id="clearPendingFilter" class="clearButton"><i class="fa fa-close"></i></button>
+					</div>
+				</td>
+				<td>
+					<div class="tableFilter">
+						<input type="checkbox" name="enableNameCheckBox" id="enableNameCheckBox">
+						<h5>Name:</h5>
+						<input type="text" class="nameFilterInput filterTextInput" size=60 id="nameFilter">
+						<label for="nameFilterCaseCheckBox">Case Sensitive:</label>
+						<input type="checkbox" class="nameFilterInput" name="nameFilterCaseCheckBox" id="nameFilterCaseCheckBox">
+						<button type="button" id="clearNameFilter" class="clearButton"><i class="fa fa-close"></i></button>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="tableFilter">
+						<input type="checkbox" name="enableTimeCheckBox" id="enableTimeCheckBox">
+						<h5>Time:</h5>
+						<input type="text" min="0" max="10" size="2" class="timeElementInput filterTextInput" placeholder="h" id="hoursFilter" />&nbsp;:
+						<input type="text" min="0" max="59" size="2" class="timeElementInput filterTextInput" placeholder="m" id="minutesFilter" />&nbsp;:
+						<input type="text" min="0" max="59" size="2" class="timeElementInput filterTextInput" placeholder="s" id="secondsFilter" />&nbsp;&#177;
+						<input type="text" min="0" max="9999" size="4" class="timeElementInput filterTextInput" placeholder="±" id="toleranceFilter" />
+						<button type="button" id="clearTimeFilter" class="clearButton"><i class="fa fa-close"></i></button>
+					</div>
+				</td>
+				<td>
+					<div class="tableFilter">
+						<input type="checkbox" name="enableSeriesCheckBox" id="enableSeriesCheckBox">
+						<h5>Series:</h5>
+						<select id="includeSeriesCombo">
+							<option value="0">Include Series</option>
+							<option value="1">Exclude Series</option>
+							<option value="2">Series Only</option>
+						</select>
+						<input type="text" class="filterTextInput" size=40 id="seriesFilterInput" readonly>
+						<button type="button" id="clearSeriesFilter" class="clearButton"><i class="fa fa-close"></i></button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

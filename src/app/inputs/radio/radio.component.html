@@ -1,3 +1,9 @@
-<p>
-  radio works!
-</p>
+<div class="radio" [attr.data-disabled]="!enabled" [style.fontFamily]="font">
+	<label class="radio__bg" *ngFor="let radioItem of data">
+		<input class="radio__input" type="radio" [name]="name" [value]="radioItem.key" [checked]="radioItem.checked" [disabled]="!enabled">
+		<div class="radio__button">
+			<div class="radio__indicator"></div>
+		</div>
+		<p class="radio__label">{{ radioItem.value }}</p>
+	</label>
+</div>

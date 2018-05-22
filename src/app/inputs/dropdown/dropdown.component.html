@@ -1,3 +1,15 @@
-<p>
-  dropdown works!
-</p>
+<div [ngClass]="{'dropdown--down': down, 'dropdown--up': !down, 'dropdown--single': single, 'dropdown--multi': !single, active: open}" class="dropdown" [attr.data-disabled]="!enabled" [style.width]="size">
+	<ul class="dropdown__items">
+		<li class="dropdown__item" [ngClass]="{'dropdown__item--odd': i % 2 === 1, 'dropdown__item--even': i % 2 === 0, 'dropdown__item--selected': dropdownItem === selection || selections.includes(dropdownItem)}" *ngFor="let dropdownItem of data; let i = index" (click)="itemClicked(dropdownItem)">
+			<span class="dropdown__item__text" [attr.data-key]="dropdownItem.key">{{ dropdownItem.value }}</span>
+		</li>
+	</ul>
+	<div class="dropdown__selection-area" (click)="open = !open">
+		<span *ngIf="single" class="dropdown__selected-value">{{ selection.value }}</span>
+		<i class="dropdown__arrow fa"></i>
+		<span class="dropdown__selected-item" [attr.data-index]="i" *ngFor="let selection of selections; let i = index">
+			<span class="dropdown__selected-item__value">{{ selection.value }}</span>&nbsp;
+			<i class="dropdown__selected-item__close fa fa-close" (click)="deselectMulti($event, selection)"></i>
+		</span>
+	</div>
+</div>

@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-@Component({
-  selector: 'app-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.css']
+@Component
+({
+	selector: 'app-button',
+	templateUrl: './button.component.html',
+	styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class ButtonComponent
+{
+	@Input() enabled = true;
+	@Input() dark = false;
+	@Input() primary1 = true;
+	@Input() iconClass = '';
+	@Input() name = 'app-checkbox';
+	@Output() clickEvent = new EventEmitter<Event>();
+	
+	setEnabled(enabled: boolean)
+	{
+		this.enabled = enabled;
+	}
+	
+	onClick(event: Event)
+	{
+		this.clickEvent.emit(event);
+	}
 }

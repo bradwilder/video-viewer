@@ -1,0 +1,35 @@
+@import '../../../styles/base/_constants.scss';
+
+.textbox {
+	color: $secondary-5;
+	font-size: 1.4em;
+	background: $secondary-1;
+	cursor: text;
+	outline: none;
+	height: 1.428571429em;
+	border-radius: 0.071428571em;
+	border: 0.071428571em solid $secondary-4;
+	transition: border-color .2s;
+	box-sizing: border-box;
+	padding: 0 .2em;
+	vertical-align: bottom;
+	
+	&[disabled] {
+		color: $secondary-6;
+		cursor: auto;
+		background: transparent;
+	}
+	
+	&::-webkit-input-placeholder {
+		color: $secondary-6;
+		opacity: .25;
+	}
+	
+	&:hover:not([disabled]) {
+		border-color: $secondary-5;
+	}
+
+	&:focus {
+		border-color: $secondary-5;
+	}
+}

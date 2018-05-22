@@ -1,0 +1,103 @@
+@import '../../../styles/base/_constants.scss';
+
+.button {
+	font-size: 100%;
+	height: 2em;
+	border-radius: .2em;
+	padding: 0;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	
+	&--light.primary1 {
+		background: $primary-1;
+	}
+	
+	&--light.primary1:hover:not([disabled]) {
+		background: $primary-1-alt1;
+	}
+		
+	&--light.primary1:active:not([disabled]) {
+		background: $primary-1-alt2;
+	}
+	
+	&--light.primary1:disabled {
+		background: $primary-1;
+		opacity: .5;
+	}
+	
+	&--light.primary2 {
+		background: $primary-3;
+	}
+		
+	&--light.primary2:hover:not([disabled]) {
+		background: $primary-3-alt1;
+	}
+		
+	&--light.primary2:active:not([disabled]) {
+		background: $primary-3-alt2;
+	}
+	
+	&--light.primary2:disabled {
+		background: $primary-3;
+		opacity: .5;
+	}
+	
+	&:disabled &__label {
+		color: $secondary-6;
+	}
+	
+	&:disabled &__icon {
+		color: $secondary-6;
+	}
+	
+	&--dark {
+		border: .1em solid $secondary-4;
+		transition: border-color .2s;
+		background: $secondary-1;
+		box-sizing: border-box;
+		
+		&:hover:not([disabled]) {
+			border-color: $secondary-5;
+		}
+		
+		&:disabled {
+			background: transparent;
+		}
+	}
+	
+	&--dark.primary1 {
+		color: $primary-1;
+		
+		&:active {
+			color: $primary-1-alt2;
+		}
+	}
+	
+	&--dark.primary2 {
+		color: $primary-3;
+		
+		&:active {
+			color: $primary-3-alt2;
+		}
+	}
+	
+	&__label {
+		font-family: $droid-sans-mono;
+		font-size: 1em;
+		margin: 0 .5em;
+	}
+	
+	&__icon {
+		font-size: 1.8em;
+		margin: 0 .1em;
+	}
+	
+	&--light &__label {
+		color: $secondary-5;
+	}
+	
+	&:disabled {
+		cursor: auto;
+	}
+}

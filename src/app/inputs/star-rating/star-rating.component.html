@@ -1,3 +1,22 @@
-<p>
-  star-rating works!
-</p>
+<div class="star-rating" [attr.data-disabled]="!enabled">
+	<input class="star-rating__input" type="radio" name="rating" value="5" [disabled]="!enabled">
+	<label class="star-rating__bg star-rating__bg--star" for="star5"></label>
+	<input class="star-rating__input" type="radio" name="rating" value="4.5" [disabled]="!enabled">
+	<label class="star-rating__bg star-rating__bg--half" for="star4_5"></label>
+	<input class="star-rating__input" type="radio" name="rating" value="4" [disabled]="!enabled">
+	<label class="star-rating__bg star-rating__bg--star" for="star4"></label>
+	<input class="star-rating__input" type="radio" name="rating" value="3.5" [disabled]="!enabled">
+	<label class="star-rating__bg star-rating__bg--half" for="star3_5"></label>
+	<input class="star-rating__input" type="radio" name="rating" value="3" [disabled]="!enabled">
+	<label class="star-rating__bg star-rating__bg--star" for="star3"></label>
+	<input class="star-rating__input" type="radio" name="rating" value="2.5" [disabled]="!enabled">
+	<label class="star-rating__bg star-rating__bg--half" for="star2_5"></label>
+	<input class="star-rating__input" type="radio" name="rating" value="2" [disabled]="!enabled">
+	<label class="star-rating__bg star-rating__bg--star" for="star2"></label>
+	<input class="star-rating__input" type="radio" name="rating" value="1.5" [disabled]="!enabled">
+	<label class="star-rating__bg star-rating__bg--half" for="star1_5"></label>
+	<input class="star-rating__input" type="radio" name="rating" value="1" [disabled]="!enabled">
+	<label class="star-rating__bg star-rating__bg--star" for="star1"></label>
+	<input class="star-rating__input" type="radio" name="rating" value=".5" [disabled]="!enabled">
+	<label class="star-rating__bg star-rating__bg--half" for="star_5"></label>
+</div>

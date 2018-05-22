@@ -1,3 +1,3 @@
-<p>
-  button works!
-</p>
+<button [ngClass]="{'button--light': !dark, 'button--dark': dark, 'primary1': primary1, 'primary2': !primary1}" class="button" [name]="name" [id]="name" type="button" (click)="onClick($event)">
+	<span [ngClass]="{button__label: iconClass === '', button__icon: iconClass !== ''}" class="{{iconClass}}"><ng-content></ng-content></span>
+</button>

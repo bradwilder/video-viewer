@@ -1,3 +1,4 @@
-<p>
-  toggle-switch works!
-</p>
+<label class="toggle-switch" [attr.data-disabled]="!enabled">
+	<input type="checkbox" class="toggle-switch__input" [name]="name" [id]="name" [checked]="on" [disabled]="!enabled">
+	<div class="toggle-switch__slider"></div>
+</label>

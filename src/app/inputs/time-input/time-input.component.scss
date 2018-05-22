@@ -1,0 +1,66 @@
+@import '../../../styles/base/_constants.scss';
+
+.time-input {
+	position: relative;
+	display: inline-block;
+	height: 2em;
+	border-radius: .1em;
+	border: .1em solid $secondary-4;
+	transition: border-color .2s;
+	padding: 0 .2em;
+	background: $secondary-1;
+	box-sizing: border-box;
+	vertical-align: bottom;
+	
+	&__input {
+		display: inline-block;
+		background: transparent;
+		cursor: text;
+		outline: none;
+		color: $secondary-5;
+		font-size: 1.4em;
+		border: none;
+		margin-top: -.07em;
+		
+		&[disabled] {
+			color: $secondary-6;
+		}
+		
+		&::-webkit-input-placeholder {
+			color: $secondary-6;
+			opacity: .25;
+		}
+		
+		&--time {
+			text-align: right;
+		}
+		
+		&--tol {
+			text-align: left;
+			padding-left: .25em;
+		}
+	}
+	
+	&__separator {
+		color: $secondary-5;
+		font-size: 1.4em;
+		margin-left: .25em;
+	}
+	
+	&[data-disabled="true"] &__separator {
+		color: $secondary-6;
+	}
+	
+	&:hover:not([data-disabled="true"]) {
+		border-color: $secondary-5;
+	}
+
+	&:focus {
+		border-color: $secondary-5;
+	}
+	
+	&[data-disabled="true"] {
+		cursor: auto;
+		background: transparent;
+	}
+}

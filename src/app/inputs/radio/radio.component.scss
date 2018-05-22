@@ -1,0 +1,93 @@
+@import '../../../styles/base/_constants.scss';
+
+.radio {
+	position: relative;
+	display: inline-block;
+	padding: .25em;
+	border-radius: .1em;
+	border: .1em solid transparent;
+	
+	&:hover:not([data-disabled="true"]) {
+		border-color: $secondary-4;
+	}
+	
+	&__bg {
+		display: block;
+		cursor: pointer;
+		padding: .25em;
+		
+		&[data-disabled="true"] {
+			cursor: auto;
+		}
+	}
+	
+	&__input {
+		display: none;
+	}
+	
+	&__button {
+		display: inline-block;
+		height: .8em;
+		width: .8em;
+		background: $secondary-1;
+		position: relative;
+		border-radius: 50%;
+		border: .1em solid $secondary-4;
+		transition: border-color .2s;
+		cursor: auto;
+		margin-right: .5em;
+		vertical-align: middle;
+	}
+	
+	&__indicator {
+		position: absolute;
+		height: .4em;
+		width: .4em;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: $primary-1;
+		border-radius: 50%;
+		display: none;
+	}
+	
+	&__label {
+		display: inline;
+		font-size: 1.6em;
+		color: $secondary-6;
+		transition: color .2s;
+		vertical-align: middle;
+	}
+	
+	&__input:checked ~ &__button > &__indicator {
+		display: block;
+	}
+	
+	&__input:not([disabled]) ~ &__button:hover {
+		cursor: pointer;
+	}
+	
+	&__input:disabled ~ &__label {
+		cursor: default;
+	}
+	
+	&__input:checked:not([disabled]) ~ &__label {
+		color: $secondary-5;
+	}
+	
+	&__bg:hover:not([data-disabled="true"]) &__label {
+		color: $secondary-5;
+	}
+	
+	&__bg:hover:not([data-disabled="true"]) &__button {
+		border-color: $secondary-5;
+	}
+	
+	&__input:disabled ~ &__button > &__indicator {
+		background: $secondary-6;
+	}
+	
+	&__input:disabled ~ &__button {
+		background: transparent;
+	}
+}

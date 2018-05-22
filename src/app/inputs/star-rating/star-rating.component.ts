@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-@Component({
-  selector: 'app-star-rating',
-  templateUrl: './star-rating.component.html',
-  styleUrls: ['./star-rating.component.css']
+@Component
+({
+	selector: 'app-star-rating',
+	templateUrl: './star-rating.component.html',
+	styleUrls: ['./star-rating.component.scss']
 })
-export class StarRatingComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class StarRatingComponent
+{
+	@Input() enabled = true;
+	
+	setEnabled(enabled: boolean)
+	{
+		this.enabled = enabled;
+	}
 }

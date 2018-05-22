@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { DataService } from './data.service';
@@ -34,7 +34,8 @@ import { TimeInputComponent } from './inputs/time-input/time-input.component';
   ],
   imports: [
 	BrowserModule,
-	HttpModule
+	HttpModule,
+	FormsModule
   ],
   providers: [DataService, VideoService],
   bootstrap: [AppComponent]

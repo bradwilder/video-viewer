@@ -7,6 +7,7 @@ export class Video
 	height: number;
 	time: number;
 	pending: boolean;
+	series: string;
 	
 	static getDisplayName(video: Video)
 	{

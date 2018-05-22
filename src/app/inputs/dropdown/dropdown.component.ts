@@ -1,27 +1,34 @@
-import { Component, Input, Renderer2, ElementRef, OnInit } from '@angular/core';
+import { Component, Input, Renderer2, ElementRef, OnInit, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 
 @Component
 ({
 	selector: 'app-dropdown',
 	templateUrl: './dropdown.component.html',
-	styleUrls: ['./dropdown.component.scss']
+	styleUrls: ['./dropdown.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 export class DropdownComponent implements OnInit
 {
-	@Input() data: Array<{key: string, value: string}>;
+	@Input() data: any;
 	@Input() enabled = true;
 	@Input() down = true;
-	@Input() single = true;
 	@Input() font = '';
 	@Input() size = '20em';
-	selection = {key: '', value: ''};
-	selections: Array<{key: string, value: string}> = [];
+	@Input() selectedItem = '';
+	@Output() changed = new EventEmitter<string>();
 	open = false;
+	dataNormalized = [];
 	
 	constructor(private renderer: Renderer2, private elRef: ElementRef) {}
 	
 	ngOnInit()
 	{
+		let props = Object.keys(this.data);
+		for (let prop of props)
+		{
+			this.dataNormalized.push({key: prop, value: this.data[prop]});
+		}
+		
 		this.renderer.listen(window, 'click', (event) =>
 		{
 			if (!this.elRef.nativeElement.contains(event.target))
@@ -34,29 +41,26 @@ export class DropdownComponent implements OnInit
 	setEnabled(enabled: boolean)
 	{
 		this.enabled = enabled;
+		this.onChange();
 	}
 	
-	itemClicked(item: {key: string, value: string})
+	itemClicked(key: string)
 	{
-		if ((this.single && item !== this.selection) || (!this.single && !this.selections.includes(item)))
+		if (key !== this.selectedItem)
 		{
-			if (this.single)
-			{
-				this.selection = item;
-				this.open = false;
-			}
-			else
-			{
-				this.selections.push(item);
-			}
+			this.selectedItem = key;
+			this.open = false;
+			this.onChange();
 		}
 	}
 	
-	deselectMulti(event: Event, item: {key: string, value: string})
+	onChange()
 	{
-		event.stopPropagation();
-		
-		const index = this.selections.indexOf(item);
-		this.selections.splice(index, 1);
+		this.changed.emit(this.selectedItem);
+	}
+	
+	getDataValue(key: string)
+	{
+		return this.data[key];
 	}
 }

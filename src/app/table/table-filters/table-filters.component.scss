@@ -1,0 +1,87 @@
+@import '../../../styles/base/_constants.scss';
+
+.filter-bg {
+	background-color: $secondary-2;
+	/*background-color: yellow;*/
+	position: relative;
+}
+
+.filter-btns {
+	position: absolute;
+	right: 5px;
+}
+
+#filter-summary {
+	border: 2px solid $secondary-4;
+	border-bottom: none;
+	padding: 5px;
+	
+	& #label {
+		font-size: 24px;
+		line-height: 40px;
+	}
+	
+	& .filter-bg {
+		text-align: center;
+		border-radius: 8px;
+	}
+	
+	& .filter-btns {
+		top: 5px;
+		
+		& .filter-btn {
+			font-size: 15px;
+			width: 30px;
+			height: 30px;
+			margin-left: 3px;
+		}
+		
+		& .filter-custom-input {
+			font-size: 15px;
+		}
+	}
+}
+
+#filter-controls {
+	& #filter-controls-table {
+		border-collapse: collapse;
+		padding: 0px;
+		width: 100%;
+		
+		& td {
+			border: 2px solid $secondary-4;
+		}
+	}
+	
+	& .table-filter {
+		padding: 5px;
+	}
+	
+	& .filter-label {
+		font-size: 16px;
+		line-height: 32px;
+		width: 70px;
+		float: left;
+	}
+	
+	& .filter-bg {
+		border-radius: 6px;
+		margin-left: 70px;
+		padding: 4px;
+	}
+	
+	& .filter-custom-input {
+		font-size: 12px;
+	}
+	
+	& .filter-btns {
+		top: 4px;
+		
+		& .filter-btn {
+			font-size: 12px;
+			width: 24px;
+			height: 24px;
+			margin-left: 2px;
+		}
+	}
+}

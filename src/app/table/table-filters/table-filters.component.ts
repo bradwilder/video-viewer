@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 ({
 	selector: 'app-table-filters',
 	templateUrl: './table-filters.component.html',
-	styleUrls: ['./table-filters.component.css']
+	styleUrls: ['./table-filters.component.scss']
 })
 export class TableFiltersComponent implements OnInit
 {

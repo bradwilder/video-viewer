@@ -6,6 +6,7 @@
 	padding: .25em;
 	border-radius: .1em;
 	border: .1em solid transparent;
+	margin: 0;
 	
 	&:hover:not([data-disabled="true"]) {
 		border-color: $secondary-4;

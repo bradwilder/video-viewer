@@ -1,1 +1,1 @@
-<input class="textbox" type="text" [value]="text" [name]="name" [id]="name" [placeholder]="placeholder" [style.fontFamily]="font" [size]="size">
+<input class="textbox" type="text" [(ngModel)]="text" (input)="onChange()" [name]="name" [id]="name" [placeholder]="placeholder" [style.fontFamily]="font" [size]="size">

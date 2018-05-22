@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component
 ({
@@ -14,9 +14,16 @@ export class TextboxComponent
 	@Input() font = '';
 	@Input() size = 50;
 	@Input() name = 'app-textbox';
+	@Output() changed = new EventEmitter<string>();
 	
 	setEnabled(enabled: boolean)
 	{
 		this.enabled = enabled;
+		this.onChange();
+	}
+	
+	onChange()
+	{
+		this.changed.emit(this.text);
 	}
 }

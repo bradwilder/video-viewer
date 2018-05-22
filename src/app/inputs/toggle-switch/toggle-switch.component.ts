@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component
 ({
@@ -11,9 +11,16 @@ export class ToggleSwitchComponent
 	@Input() on = false;
 	@Input() enabled = true;
 	@Input() name = 'app-toggle-switch';
+	@Output() changed = new EventEmitter<boolean>();
 	
 	setEnabled(enabled: boolean)
 	{
 		this.enabled = enabled;
+		this.onChange();
+	}
+	
+	onChange()
+	{
+		this.changed.emit(this.on);
 	}
 }

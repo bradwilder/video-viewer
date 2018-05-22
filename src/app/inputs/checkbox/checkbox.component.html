@@ -1,4 +1,4 @@
 <label class="checkbox" [attr.data-disabled]="!enabled">
-	<input type="checkbox" class="checkbox__input" [name]="name" [id]="name" [checked]="checked" [disabled]="!enabled">
+	<input type="checkbox" class="checkbox__input" [name]="name" [id]="name" [(ngModel)]="checked" (change)="onChange()" [disabled]="!enabled">
 	<i class="checkbox__check fa fa-check"></i>
 </label>

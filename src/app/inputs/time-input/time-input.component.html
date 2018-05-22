@@ -1,9 +1,9 @@
 <div class="time-input" [attr.data-disabled]="!enabled" [style.fontFamily]="font">
-	<input class="time-input__input time-input__input--time" type="number" min="0" max="10" size="2" placeholder="hh" [disabled]="!enabled">
+	<input class="time-input__input time-input__input--time" type="number" min="0" max="10" size="2" placeholder="hh" [(ngModel)]="hours" (change)="onHourChanged()" [disabled]="!enabled">
 	<span class="time-input__separator">:</span>
-	<input class="time-input__input time-input__input--time" type="number" min="0" max="59" size="2" placeholder="mm" [disabled]="!enabled">
+	<input class="time-input__input time-input__input--time" type="number" min="0" max="59" size="2" placeholder="mm" [(ngModel)]="minutes" (change)="onMinuteChanged()" [disabled]="!enabled">
 	<span class="time-input__separator">:</span>
-	<input class="time-input__input time-input__input--time" type="number" min="0" max="59" size="2" placeholder="ss" [disabled]="!enabled">
+	<input class="time-input__input time-input__input--time" type="number" min="0" max="59" size="2" placeholder="ss" [(ngModel)]="seconds" (change)="onSecondChanged()" [disabled]="!enabled">
 	<span class="time-input__separator">&#177;</span>
-	<input class="time-input__input time-input__input--tol" type="number" min="0" max="9999" size="4" placeholder="tol" [disabled]="!enabled">
+	<input class="time-input__input time-input__input--tol" type="number" min="0" max="9999" size="4" placeholder="tol" [(ngModel)]="tol" (change)="onTolChanged()" [disabled]="!enabled">
 </div>

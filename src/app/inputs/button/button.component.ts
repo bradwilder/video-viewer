@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, EventEmitter } from '@angular/core';
 
 @Component
 ({
@@ -13,15 +13,9 @@ export class ButtonComponent
 	@Input() primary1 = true;
 	@Input() iconClass = '';
 	@Input() name = 'app-checkbox';
-	@Output() clickEvent = new EventEmitter<Event>();
 	
-	setEnabled(enabled: boolean)
-	{
-		this.enabled = enabled;
-	}
-	
-	onClick(event: Event)
-	{
-		this.clickEvent.emit(event);
-	}
+	// setEnabled(enabled: boolean)
+	// {
+	// 	this.enabled = enabled;
+	// }
 }

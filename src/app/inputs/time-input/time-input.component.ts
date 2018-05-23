@@ -8,53 +8,40 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 })
 export class TimeInputComponent
 {
-	@Input() value: {time: number, tol: number} = {time: 0, tol: 0}
+	@Input() hours: number = 0;
+	@Input() minutes: number = 0;
+	@Input() seconds: number = 0;
+	@Input() tol: number = 0;
 	@Input() enabled = true;
 	@Input() font = '';
-	@Output() changed = new EventEmitter<{time: number, tol: number}>();
-	private hours = 0;
-	private minutes = 0;
-	private seconds = 0;
-	private tol = 0;
+	@Output() hoursChange = new EventEmitter<number>();
+	@Output() minutesChange = new EventEmitter<number>();
+	@Output() secondsChange = new EventEmitter<number>();
+	@Output() tolChange = new EventEmitter<number>();
 	
-	setEnabled(enabled: boolean)
+	// setEnabled(enabled: boolean)
+	// {
+	// 	this.enabled = enabled;
+	// 	this.onChange();
+	// }
+	
+	onHoursChange()
 	{
-		this.enabled = enabled;
-		this.onChange();
+		this.hoursChange.emit(this.hours);
 	}
 	
-	onHourChanged()
+	onMinutesChange()
 	{
-		this.updateValue();
-		this.onChange();
+		this.minutesChange.emit(this.minutes);
 	}
 	
-	onMinuteChanged()
+	onSecondsChange()
 	{
-		this.updateValue();
-		this.onChange();
+		this.secondsChange.emit(this.seconds);
 	}
 	
-	onSecondChanged()
+	onTolChange()
 	{
-		this.updateValue();
-		this.onChange();
-	}
-	
-	onTolChanged()
-	{
-		this.updateValue();
-		this.onChange();
-	}
-	
-	updateValue()
-	{
-		this.value.time = this.hours * 3600 + this.minutes * 60 + this.seconds;
-		this.value.tol = this.tol;
-	}
-	
-	onChange()
-	{
-		this.changed.emit(this.value);
+		this.tolChange.emit(this.tol);
 	}
 }

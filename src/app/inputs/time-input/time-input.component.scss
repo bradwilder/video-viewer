@@ -24,6 +24,7 @@
 		
 		&[disabled] {
 			color: $secondary-6;
+			cursor: auto;
 		}
 		
 		&::-webkit-input-placeholder {
@@ -45,6 +46,8 @@
 		color: $secondary-5;
 		font-size: 1.4em;
 		margin-left: .25em;
+		cursor: auto;
+		user-select: none;
 	}
 	
 	&[data-disabled="true"] &__separator {
@@ -60,7 +63,6 @@
 	}
 	
 	&[data-disabled="true"] {
-		cursor: auto;
 		background: transparent;
 	}
 }

@@ -8,10 +8,10 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 })
 export class TimeInputComponent
 {
-	@Input() hours: number = 0;
-	@Input() minutes: number = 0;
-	@Input() seconds: number = 0;
-	@Input() tol: number = 0;
+	@Input() hours: number;
+	@Input() minutes: number;
+	@Input() seconds: number;
+	@Input() tol: number;
 	@Input() enabled = true;
 	@Input() font = '';
 	@Output() hoursChange = new EventEmitter<number>();

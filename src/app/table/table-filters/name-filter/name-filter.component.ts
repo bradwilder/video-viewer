@@ -82,7 +82,6 @@ export class NameFilterComponent implements OnInit
 	
 	filterFunction(video: Video)
 	{
-		debugger;
 		if (!this.caseInsensitive)
 		{
 			return video.fileName.indexOf(this.selectedName) !== -1;

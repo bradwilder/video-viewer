@@ -12,38 +12,30 @@ export class TableFiltersService
 	setEnabled(enabled: boolean)
 	{
 		this.enabled = enabled;
-		this.filtersChanged.next();
 		this.enabledChanged.next(this.enabled);
+		this.filtersChanged.next();
 	}
 	
 	addFilter(filterName: string, filter: Function)
 	{
 		this.removeFilter(filterName);
 		this.filters[filterName] = filter;
-		
 		this.filtersChanged.next();
 	}
 	
 	removeFilter(name: string)
 	{
 		delete this.filters[name];
-		
 		this.filtersChanged.next();
 	}
 	
 	clear()
 	{
-		this.removeFilters();
+		this.filters = {};
+		this.filtersChanged.next();
 		this.enabled = false;
 		this.enabledChanged.next(this.enabled);
 		this.cleared.next();
-	}
-	
-	private removeFilters()
-	{
-		this.filters = {};
-		
-		this.filtersChanged.next();
 	}
 	
 	filter(videos: Video[]): Video[]

@@ -11,16 +11,16 @@ export class CheckboxComponent
 	@Input() checked = false;
 	@Input() enabled = true;
 	@Input() name = 'app-checkbox';
-	@Output() changed = new EventEmitter<boolean>();
+	@Output() checkedChange = new EventEmitter<boolean>();
 	
-	setEnabled(enabled: boolean)
-	{
-		this.enabled = enabled;
-		this.onChange();
-	}
+	// setEnabled(enabled: boolean)
+	// {
+	// 	this.enabled = enabled;
+	// 	this.onChange();
+	// }
 	
 	onChange()
 	{
-		this.changed.emit(this.checked);
+		this.checkedChange.emit(this.checked);
 	}
 }

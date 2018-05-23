@@ -11,16 +11,16 @@ export class ToggleSwitchComponent
 	@Input() on = false;
 	@Input() enabled = true;
 	@Input() name = 'app-toggle-switch';
-	@Output() changed = new EventEmitter<boolean>();
+	@Output() onChange = new EventEmitter<boolean>();
 	
-	setEnabled(enabled: boolean)
-	{
-		this.enabled = enabled;
-		this.onChange();
-	}
+	// setEnabled(enabled: boolean)
+	// {
+	// 	this.enabled = enabled;
+	// 	this.onChanged();
+	// }
 	
-	onChange()
+	onChanged()
 	{
-		this.changed.emit(this.on);
+		this.onChange.emit(this.on);
 	}
 }

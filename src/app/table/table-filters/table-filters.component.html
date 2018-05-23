@@ -1,80 +1,33 @@
 <div class="filters type__title type__title--darker">
 	<div id="filter-summary">
 		<div class="filter-bg">
-			<span id="label">Showing 15000 videos</span>
+			<span id="label">Showing {{ videoService.getVideosCount() }} videos</span>
 			<span class="filter-btns">
 				<span class="filter-custom-input">
-					<app-toggle-switch name="enable" [on]="false"></app-toggle-switch>
+					<app-toggle-switch name="enable" [(on)]="enabled" (onChange)="onEnable()"></app-toggle-switch>
 				</span>
-				<app-button class="filter-btn" [dark]="true" [iconClass]="'fa fa-angle-up'"></app-button>
-				<app-button class="filter-btn" [dark]="true" [iconClass]="'fa fa-close'"></app-button>
+				<app-button class="filter-btn" (click)="open = !open" [dark]="true" [iconClass]="open ? 'fa fa-angle-up' : 'fa fa-angle-down'"></app-button>
+				<app-button class="filter-btn" (click)="onClear()" [dark]="true" [iconClass]="'fa fa-close'"></app-button>
 			</span>
 		</div>
 	</div>
-	<div id="filter-controls">
+	<div id="filter-controls" [hidden]="!open">
 		<table id="filter-controls-table">
 			<tbody>
 				<tr>
 					<td class="table-filter">
-						<span class="filter-label">Pend</span>
-						<div class="filter-bg">
-							<span class="filter-custom-input">
-								<app-dropdown [data]="[{key: 0, value: 'Include Pending'}, {key: 1, value: 'Exclude Pending'}, {key: 2, value: 'Pending Only'}]" size="12em"></app-dropdown>
-							</span>
-							<span class="filter-btns">
-								<span class="filter-custom-input">
-									<app-toggle-switch name="enable" [on]="false"></app-toggle-switch>
-								</span>
-								<app-button class="filter-btn" [dark]="true" iconClass="fa fa-close"></app-button>
-							</span>
-						</div>
+						<app-pending-filter></app-pending-filter>
 					</td>
 					<td class="table-filter">
-						<span class="filter-label">Name</span>
-						<div class="filter-bg">
-							<span class="filter-custom-input">
-								<app-textbox placeholder="Name" [size]="30"></app-textbox>
-								<app-checkbox [checked]="true" name="caseInsensitive"></app-checkbox>
-								<label for="caseInsensitive">C.I.</label>
-							</span>
-							<span class="filter-btns">
-								<span class="filter-custom-input">
-									<app-toggle-switch name="enable" [on]="false"></app-toggle-switch>
-								</span>
-								<app-button class="filter-btn" [dark]="true" iconClass="fa fa-close"></app-button>
-							</span>
-						</div>
+						<app-name-filter></app-name-filter>
 					</td>
 				</tr>
 				<tr>
 					<td class="table-filter">
-						<span class="filter-label">Time</span>
-						<div class="filter-bg">
-							<span class="filter-custom-input">
-								<app-time-input></app-time-input>
-							</span>
-							<span class="filter-btns">
-								<span class="filter-custom-input">
-									<app-toggle-switch name="enable" [on]="false"></app-toggle-switch>
-								</span>
-								<app-button class="filter-btn" [dark]="true" iconClass="fa fa-close"></app-button>
-							</span>
-						</div>
+						<app-time-filter></app-time-filter>
 					</td>
 					<td class="table-filter">
-						<span class="filter-label">Series</span>
-						<div class="filter-bg">
-							<span class="filter-custom-input">
-								<app-dropdown [data]="[{key: 0, value: 'Include Series'}, {key: 1, value: 'Exclude Series'}, {key: 2, value: 'Series Only'}]" size="11em"></app-dropdown>
-								<app-textbox placeholder="Series" size="20"></app-textbox>
-							</span>
-							<span class="filter-btns">
-								<span class="filter-custom-input">
-									<app-toggle-switch name="enable" [on]="false"></app-toggle-switch>
-								</span>
-								<app-button class="filter-btn" [dark]="true" iconClass="fa fa-close"></app-button>
-							</span>
-						</div>
+						<app-series-filter></app-series-filter>
 					</td>
 				</tr>
 			</tbody>

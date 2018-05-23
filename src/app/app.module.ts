@@ -16,28 +16,44 @@ import { RadioComponent } from './inputs/radio/radio.component';
 import { StarRatingComponent } from './inputs/star-rating/star-rating.component';
 import { TextboxComponent } from './inputs/textbox/textbox.component';
 import { TimeInputComponent } from './inputs/time-input/time-input.component';
+import { PendingFilterComponent } from './table/table-filters/pending-filter/pending-filter.component';
+import { NameFilterComponent } from './table/table-filters/name-filter/name-filter.component';
+import { TimeFilterComponent } from './table/table-filters/time-filter/time-filter.component';
+import { SeriesFilterComponent } from './table/table-filters/series-filter/series-filter.component';
+import { TableFiltersService } from './table/table-filters/table-filters.service';
 
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    TableComponent,
-    TableFiltersComponent,
-    ToggleSwitchComponent,
-    ButtonComponent,
-    CheckboxComponent,
-    DropdownComponent,
-    RadioComponent,
-    StarRatingComponent,
-    TextboxComponent,
-    TimeInputComponent
-  ],
-  imports: [
-	BrowserModule,
-	HttpModule,
-	FormsModule
-  ],
-  providers: [DataService, VideoService],
-  bootstrap: [AppComponent]
+@NgModule
+({
+	declarations:
+	[
+		AppComponent,
+		TableComponent,
+		TableFiltersComponent,
+		ToggleSwitchComponent,
+		ButtonComponent,
+		CheckboxComponent,
+		DropdownComponent,
+		RadioComponent,
+		StarRatingComponent,
+		TextboxComponent,
+		TimeInputComponent,
+		PendingFilterComponent,
+		NameFilterComponent,
+		TimeFilterComponent,
+		SeriesFilterComponent
+	],
+	imports:
+	[
+		BrowserModule,
+		HttpModule,
+		FormsModule
+	],
+	providers:
+	[
+		DataService,
+		VideoService,
+		TableFiltersService
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -8,31 +8,29 @@ import { Subscription } from "rxjs/Subscription";
 @Injectable()
 export class VideoService
 {
-	private videos: Array<Video> = [];
-	videosChanged = new Subject<Array<Video>>();
+	private videos: Video[] = [];
+	private filteredVideos: Video[];
+	filteredVideosChanged = new Subject<Video[]>();
 	filtersSubscription: Subscription;
+	videosCountChanged = new Subject<number>();
+	filteredCountChanged = new Subject<number>();
 	
 	constructor(private dataService: DataService, private filtersService: TableFiltersService)
 	{
 		this.dataService.getVideos().subscribe((res) =>
 		{
 			this.videos = res;
-			this.videosChanged.next(this.getVideos());
+			this.videosCountChanged.next(this.videos.length);
+			this.filteredVideos = this.filtersService.filter(this.videos);
+			this.filteredCountChanged.next(this.filteredVideos.length);
+			this.filteredVideosChanged.next(this.filteredVideos);
 		});
 		
 		this.filtersSubscription = this.filtersService.filtersChanged.subscribe(() =>
 		{
-			this.videosChanged.next(this.getVideos());
+			this.filteredVideos = this.filtersService.filter(this.videos);
+			this.filteredCountChanged.next(this.filteredVideos.length);
+			this.filteredVideosChanged.next(this.filteredVideos);
 		});
-	}
-	
-	getVideos()
-	{
-		return this.filtersService.filter(this.videos);
-	}
-	
-	getVideosCount()
-	{
-		return this.getVideos().length;
 	}
 }

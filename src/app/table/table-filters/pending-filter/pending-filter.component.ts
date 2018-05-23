@@ -45,7 +45,14 @@ export class PendingFilterComponent implements OnInit
 	
 	onChange()
 	{
-		this.filtersService.addFilter(PendingFilterComponent.filterName, this.filterFunction.bind(this));
+		if (this.selected.key !== '0')
+		{
+			this.filtersService.addFilter(PendingFilterComponent.filterName, this.filterFunction.bind(this));
+		}
+		else
+		{
+			this.filtersService.removeFilter(PendingFilterComponent.filterName);
+		}
 	}
 	
 	onEnable()

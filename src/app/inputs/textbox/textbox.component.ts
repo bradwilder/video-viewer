@@ -14,16 +14,16 @@ export class TextboxComponent
 	@Input() font = '';
 	@Input() size = 50;
 	@Input() name = 'app-textbox';
-	@Output() changed = new EventEmitter<string>();
+	@Output() textChange = new EventEmitter<string>();
 	
-	setEnabled(enabled: boolean)
-	{
-		this.enabled = enabled;
-		this.onChange();
-	}
+	// setEnabled(enabled: boolean)
+	// {
+	// 	this.enabled = enabled;
+	// 	this.onChange();
+	// }
 	
 	onChange()
 	{
-		this.changed.emit(this.text);
+		this.textChange.emit(this.text);
 	}
 }

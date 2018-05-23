@@ -27,6 +27,10 @@
 		}
 	}
 	
+	&[data-disabled] &__selection-area {
+		background: transparent;
+	}
+	
 	&__items:hover ~ &__selection-area {
 		border-color: $secondary-5;
 	}

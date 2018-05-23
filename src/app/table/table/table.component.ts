@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { VideoService } from '../../video/video.service';
 import { Video } from '../../video/video.model';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component
 ({
@@ -8,19 +9,18 @@ import { Video } from '../../video/video.model';
 	templateUrl: './table.component.html',
 	styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit
+export class TableComponent implements OnInit, OnDestroy
 {
 	videos: Array<Video>;
+	videosChangedSubscription: Subscription;
 	
 	constructor(private videoService: VideoService) {}
 	
 	ngOnInit()
 	{
-		this.videos = this.videoService.getVideos();
-		
-		this.videoService.videosChanged.subscribe((videos) =>
+		this.videosChangedSubscription = this.videoService.filteredVideosChanged.subscribe((videos) =>
 		{
-			return this.videos = videos;
+			this.videos = videos;
 		});
 	}
 	
@@ -37,5 +37,10 @@ export class TableComponent implements OnInit
 	getLastModified(video: Video)
 	{
 		return Video.getLastModified(video);
+	}
+	
+	ngOnDestroy()
+	{
+		this.videosChangedSubscription.unsubscribe();
 	}
 }

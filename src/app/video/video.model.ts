@@ -16,9 +16,14 @@ export class Video
 	
 	static getDisplayTime(video: Video)
 	{
-		var date = new Date();
-		date.setSeconds(video.time);
-		return date.toISOString().substr(11, 8);
+		const hours = Math.floor(video.time / 3600);
+		const hoursStr = hours < 10 ? (hours === 0 ? '00' : '0' + hours) : hours;
+		const minutes = Math.floor((video.time % 3600) / 60);
+		const minutesStr = minutes < 10 ? (minutes === 0 ? '00' : '0' + minutes) : minutes;
+		const seconds = video.time % 60;
+		const secondsStr = seconds < 10 ? (seconds === 0 ? '00' : '0' + seconds) : seconds;
+		
+		return hoursStr + ':' + minutesStr + ':' + secondsStr;
 	}
 	
 	static getLastModified(video: Video)

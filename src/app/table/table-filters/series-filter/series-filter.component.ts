@@ -14,9 +14,9 @@ export class SeriesFilterComponent implements OnInit
 	private static filterName = 'series';
 	private static typeItems =
 	[
-		{key: '0', value: 'Include Series'},
-		{key: '1', value: 'Exclude Series'},
-		{key: '2', value: 'Series Only'}
+		{key: '0', value: 'Include'},
+		{key: '1', value: 'Exclude'},
+		{key: '2', value: 'Only'}
 	];
 	private static initialSeriesNameOptions =
 	[

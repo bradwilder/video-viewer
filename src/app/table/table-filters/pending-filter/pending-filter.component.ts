@@ -13,9 +13,9 @@ export class PendingFilterComponent implements OnInit
 	private static filterName = 'pending';
 	private static items =
 	[
-		{key: '0', value: 'Include Pending'},
-		{key: '1', value: 'Exclude Pending'},
-		{key: '2', value: 'Pending Only'}
+		{key: '0', value: 'Include'},
+		{key: '1', value: 'Exclude'},
+		{key: '2', value: 'Only'}
 	];
 	selected = PendingFilterComponent.items[0];
 	enabled = false;

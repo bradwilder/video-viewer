@@ -1,5 +1,6 @@
 export class Video
 {
+	_id: string;
 	fileName: string;
 	fileSize: number;
 	lastModified: Date;

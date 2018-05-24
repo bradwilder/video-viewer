@@ -27,21 +27,21 @@ export class TimeInputComponent
 	
 	onHoursChange()
 	{
-		this.hoursChange.emit(this.hours);
+		this.hoursChange.emit(+this.hours);
 	}
 	
 	onMinutesChange()
 	{
-		this.minutesChange.emit(this.minutes);
+		this.minutesChange.emit(+this.minutes);
 	}
 	
 	onSecondsChange()
 	{
-		this.secondsChange.emit(this.seconds);
+		this.secondsChange.emit(+this.seconds);
 	}
 	
 	onTolChange()
 	{
-		this.tolChange.emit(this.tol);
+		this.tolChange.emit(+this.tol);
 	}
 }

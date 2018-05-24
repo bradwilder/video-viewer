@@ -20,6 +20,7 @@ export class TimeInputFilterDirective
 			(e.keyCode == 65 && e.ctrlKey) ||    // Allow: Ctrl+A
 			(e.keyCode == 67 && e.ctrlKey) ||    // Allow: Ctrl+C
 			(e.keyCode == 88 && e.ctrlKey) ||    // Allow: Ctrl+X
+			e.keyCode == 9 ||                    // Allow: tab
 			(e.keyCode >= 35 && e.keyCode <= 40) // Allow: home, end, left, right, up, down
 		)
 		{

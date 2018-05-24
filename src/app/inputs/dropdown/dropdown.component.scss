@@ -21,6 +21,7 @@
 		box-sizing: border-box;
 		padding-left: .3em;
 		padding-right: 1.8em;
+		/*overflow-x: hidden;*/ /* TODO */
 		
 		&:hover:not([data-disabled="true"]) {
 			border-color: $secondary-5;

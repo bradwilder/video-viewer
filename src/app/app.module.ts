@@ -22,6 +22,7 @@ import { TimeFilterComponent } from './table/table-filters/time-filter/time-filt
 import { SeriesFilterComponent } from './table/table-filters/series-filter/series-filter.component';
 import { TableFiltersService } from './table/table-filters/table-filters.service';
 import { TimeInputFilterDirective } from './inputs/time-input/time-input-filter.directive';
+import { TableHighlightingService } from './table/table/table-highlighting.service';
 
 @NgModule
 ({
@@ -54,7 +55,8 @@ import { TimeInputFilterDirective } from './inputs/time-input/time-input-filter.
 	[
 		DataService,
 		VideoService,
-		TableFiltersService
+		TableFiltersService,
+		TableHighlightingService
 	],
 	bootstrap: [AppComponent]
 })

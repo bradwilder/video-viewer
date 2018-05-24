@@ -9,11 +9,12 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let video of videos; let i = index" [ngClass]="{odd: i % 2 === 1, even: i % 2 === 0}">
+		<tr *ngFor="let video of videos; let i = index" [ngClass]="{odd: i % 2 === 1, even: i % 2 === 0, highlight: isVideoHighlighted(video), 'highlight-last': isVideoLeadHighlighted(video)}" (click)="onRowClick($event, video)">
 			<td class='pending'>
-				<app-checkbox [enabled]="false" [checked]="video.pending" name="pending"></app-checkbox>
+				<app-checkbox [enabled]="isVideoLeadHighlighted(video)" [(checked)]="video.pending" (checkedChange)="onPendingChange(video)"></app-checkbox>
+				<!-- <app-toggle-switch [enabled]="isVideoLeadHighlighted(video)" [(on)]="video.pending" (onChange)="onPendingChange(video)"></app-toggle-switch> -->
 			</td>
-			<td class='videoName'>
+			<td>
 				<div class='videoNameDiv' style='width: 100%; height: 100%;'>
 					<span class='videoNameDisplayed'>{{ getDisplayName(video) }}</span>
 				</div>

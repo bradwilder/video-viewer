@@ -98,3 +98,24 @@ tr th span.sortIcon i {
 	position: relative;
     vertical-align: middle;
 }
+
+/* Table highlighting colors */
+tbody tr:hover {
+	background-color: $secondary-8;
+	color: $primary-1;
+}
+
+tbody tr.highlight {
+	background-color: $primary-1;
+	color: $secondary-3;
+	
+	&.highlight-last {
+		border: 1px solid $secondary-5;
+	}
+	
+	&:hover {
+		background-color: $primary-1-alt2;
+	}
+}
+
+

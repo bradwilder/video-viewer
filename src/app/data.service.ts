@@ -6,15 +6,15 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataService
 {
-	result: any;
-	
 	constructor(private http: Http) {}
 	
 	getVideos()
 	{
-		return this.http.get('/api/videos').map((result) =>
-		{
-			return this.result = result.json().data;
-		});
+		return this.http.get('/api/videos').map((result) => result.json().data);
+	}
+	
+	getSeries()
+	{
+		return this.http.get('/api/series').map((result) => result.json().data);
 	}
 }

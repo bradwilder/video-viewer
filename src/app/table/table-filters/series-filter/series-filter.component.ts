@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { TableFiltersService } from '../table-filters.service';
 import { Video } from '../../../video/video.model';
+import { VideoService } from '../../../video/video.service';
 
 @Component
 ({
@@ -11,24 +12,31 @@ import { Video } from '../../../video/video.model';
 export class SeriesFilterComponent implements OnInit
 {
 	private static filterName = 'series';
-	private static items =
+	private static typeItems =
 	[
 		{key: '0', value: 'Include Series'},
 		{key: '1', value: 'Exclude Series'},
 		{key: '2', value: 'Series Only'}
 	];
-	selected = SeriesFilterComponent.items[0];
-	seriesName = '';
+	private static initialSeriesNameOptions =
+	[
+		{key: '', value: '<All>'}
+	];
+	
+	selectedType = SeriesFilterComponent.typeItems[0];
 	enabled = false;
 	filtersEnabled = false;
 	enabledSubscription: Subscription;
 	clearedSubscription: Subscription;
+	seriesSubscription: Subscription;
+	seriesOptions = SeriesFilterComponent.initialSeriesNameOptions;
+	selectedSeries = SeriesFilterComponent.initialSeriesNameOptions[0];
 	
-	constructor(private filtersService: TableFiltersService) {}
+	constructor(private filtersService: TableFiltersService, private videoService: VideoService) {}
 	
 	private getItems()
 	{
-		return SeriesFilterComponent.items;
+		return SeriesFilterComponent.typeItems;
 	}
 	
 	ngOnInit()
@@ -42,9 +50,29 @@ export class SeriesFilterComponent implements OnInit
 		{
 			this.onClear();
 		});
+		
+		this.videoService.seriesChanged.subscribe((seriesArr) =>
+		{
+			this.seriesOptions = SeriesFilterComponent.initialSeriesNameOptions.concat(seriesArr.map((seriesName) =>
+			{
+				return {key: seriesName, value: seriesName};
+			});
+		}));
 	}
 	
-	onChange()
+	onChangeType()
+	{
+		if (this.selectedType.key !== '0')
+		{
+			this.filtersService.addFilter(SeriesFilterComponent.filterName, this.filterFunction.bind(this));
+		}
+		else
+		{
+			this.filtersService.removeFilter(SeriesFilterComponent.filterName);
+		}
+	}
+	
+	onChangeSeries()
 	{
 		this.filtersService.addFilter(SeriesFilterComponent.filterName, this.filterFunction.bind(this));
 	}
@@ -53,7 +81,7 @@ export class SeriesFilterComponent implements OnInit
 	{
 		if (this.enabled)
 		{
-			if (this.selected.key !== '0')
+			if (this.selectedType.key !== '0')
 			{
 				this.filtersService.addFilter(SeriesFilterComponent.filterName, this.filterFunction.bind(this));
 			}
@@ -70,21 +98,28 @@ export class SeriesFilterComponent implements OnInit
 	
 	onClear()
 	{
-		this.selected = SeriesFilterComponent.items[0];
-		this.seriesName = '';
+		this.selectedType = SeriesFilterComponent.typeItems[0];
+		this.selectedSeries = SeriesFilterComponent.initialSeriesNameOptions[0];
 		this.enabled = false;
 		this.onEnable();
 	}
 	
 	filterFunction(video: Video)
 	{
-		if (this.selected.key === '1')
+		if (this.selectedType.key === '1')
 		{
 			return !video.series;
 		}
-		else if (this.selected.key === '2')
+		else if (this.selectedType.key === '2')
 		{
-			return video.series && video.series === this.seriesName;
+			if (this.selectedSeries.key === '')
+			{
+				return video.series;
+			}
+			else
+			{
+				return video.series && video.series === this.selectedSeries.key;
+			}
 		}
 	}
 	

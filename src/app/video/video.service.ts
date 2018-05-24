@@ -15,6 +15,9 @@ export class VideoService
 	videosCountChanged = new Subject<number>();
 	filteredCountChanged = new Subject<number>();
 	
+	private series: string[] = [];
+	seriesChanged = new Subject<string[]>();
+	
 	constructor(private dataService: DataService, private filtersService: TableFiltersService)
 	{
 		this.dataService.getVideos().subscribe((res) =>
@@ -24,6 +27,12 @@ export class VideoService
 			this.filteredVideos = this.filtersService.filter(this.videos);
 			this.filteredCountChanged.next(this.filteredVideos.length);
 			this.filteredVideosChanged.next(this.filteredVideos);
+		});
+		
+		this.dataService.getSeries().subscribe((res) =>
+		{
+			this.series = res;
+			this.seriesChanged.next(this.series);
 		});
 		
 		this.filtersSubscription = this.filtersService.filtersChanged.subscribe(() =>

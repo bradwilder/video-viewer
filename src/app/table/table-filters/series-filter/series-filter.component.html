@@ -1,8 +1,8 @@
 <span class="filter-label">Series</span>
 <div class="filter-bg">
 	<span class="filter-custom-input">
-		<app-dropdown class="type__title--no-upper" [data]="getItems()" [(selectedItem)]="selected" [enabled]="filtersEnabled && enabled" size="13em"></app-dropdown>
-		<app-textbox [(text)]="seriesName" [enabled]="filtersEnabled && enabled && selected.key === '2'" placeholder="Series" size="20"></app-textbox>
+		<app-dropdown class="type__title--no-upper" [data]="getItems()" [(selectedItem)]="selectedType" (selectedItemChange)="onChangeType()" [enabled]="filtersEnabled && enabled" size="13em"></app-dropdown>
+		<app-dropdown class="type__title--no-upper" [data]="seriesOptions" [(selectedItem)]="selectedSeries" (selectedItemChange)="onChangeSeries()" [enabled]="filtersEnabled && enabled && selectedType.key === '2'" size="25em"></app-dropdown>
 	</span>
 	<span class="filter-btns">
 		<span class="filter-custom-input">

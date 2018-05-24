@@ -34,7 +34,7 @@ let response =
 	message: null
 };
 
-// Get videos
+// API
 router.get('/videos', (req, res) =>
 {
 	connection((db) =>
@@ -42,6 +42,22 @@ router.get('/videos', (req, res) =>
 		db.collection('videos').find().sort({fileName: 1}).toArray().then((videos) =>
 		{
 			response.data = videos;
+			res.json(response);
+		})
+		.catch((err) =>
+		{
+			sendError(err, res);
+		});
+	});
+});
+
+router.get('/series', (req, res) =>
+{
+	connection((db) =>
+	{
+		db.collection('videos').distinct("series").then((series) =>
+		{
+			response.data = series;
 			res.json(response);
 		})
 		.catch((err) =>

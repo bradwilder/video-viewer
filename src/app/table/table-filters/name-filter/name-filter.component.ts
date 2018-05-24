@@ -44,6 +44,13 @@ export class NameFilterComponent implements OnInit
 		}, 2000);
 	}
 	
+	onCaseInsensitiveChange()
+	{
+		this.clearTimeout();
+		
+		this.filtersService.addFilter(NameFilterComponent.filterName, this.filterFunction.bind(this));
+	}
+	
 	doFilter()
 	{
 		if (this.selectedName)

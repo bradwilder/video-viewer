@@ -2,7 +2,7 @@
 <div class="filter-bg">
 	<span class="filter-custom-input">
 		<app-textbox placeholder="Name" [(text)]="selectedName" (textChange)="onInput()" [enabled]="filtersEnabled && enabled" [size]="30"></app-textbox>
-		<app-checkbox [(checked)]="caseInsensitive" [enabled]="filtersEnabled && enabled" name="caseInsensitive"></app-checkbox>
+		<app-checkbox [(checked)]="caseInsensitive" (checkedChange)="onCaseInsensitiveChange()" [enabled]="filtersEnabled && enabled" name="caseInsensitive"></app-checkbox>
 		<label for="caseInsensitive">C.I.</label>
 	</span>
 	<span class="filter-btns">

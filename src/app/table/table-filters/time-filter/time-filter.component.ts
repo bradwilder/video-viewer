@@ -11,7 +11,6 @@ import { Video } from '../../../video/video.model';
 export class TimeFilterComponent implements OnInit
 {
 	private static filterName = 'time';
-	private static initialValue = {hours: 0, minutes: 0, seconds: 0, tol: 0};
 	hours;
 	minutes;
 	seconds;
@@ -49,7 +48,7 @@ export class TimeFilterComponent implements OnInit
 	
 	doFilter()
 	{
-		if (this.getSeconds() !== 0 && this.getTol() !== 0)
+		if (this.getSeconds() !== 0 || this.getTol() !== 0)
 		{
 			this.filtersService.addFilter(TimeFilterComponent.filterName, this.filterFunction.bind(this));
 		}
@@ -63,7 +62,7 @@ export class TimeFilterComponent implements OnInit
 	{
 		if (this.enabled)
 		{
-			if (this.getSeconds() !== 0 && this.getTol() !== 0)
+			if (this.getSeconds() !== 0 || this.getTol() !== 0)
 			{
 				this.filtersService.addFilter(TimeFilterComponent.filterName, this.filterFunction.bind(this));
 			}
@@ -88,7 +87,6 @@ export class TimeFilterComponent implements OnInit
 	
 	filterFunction(video: Video)
 	{
-		debugger;
 		const time = this.getSeconds();
 		const tol = this.getTol();
 		

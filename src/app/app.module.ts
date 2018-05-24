@@ -21,6 +21,7 @@ import { NameFilterComponent } from './table/table-filters/name-filter/name-filt
 import { TimeFilterComponent } from './table/table-filters/time-filter/time-filter.component';
 import { SeriesFilterComponent } from './table/table-filters/series-filter/series-filter.component';
 import { TableFiltersService } from './table/table-filters/table-filters.service';
+import { TimeInputFilterDirective } from './inputs/time-input/time-input-filter.directive';
 
 @NgModule
 ({
@@ -40,7 +41,8 @@ import { TableFiltersService } from './table/table-filters/table-filters.service
 		PendingFilterComponent,
 		NameFilterComponent,
 		TimeFilterComponent,
-		SeriesFilterComponent
+		SeriesFilterComponent,
+		TimeInputFilterDirective
 	],
 	imports:
 	[

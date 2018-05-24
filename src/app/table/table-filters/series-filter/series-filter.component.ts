@@ -56,8 +56,8 @@ export class SeriesFilterComponent implements OnInit
 			this.seriesOptions = SeriesFilterComponent.initialSeriesNameOptions.concat(seriesArr.map((seriesName) =>
 			{
 				return {key: seriesName, value: seriesName};
-			});
-		}));
+			}));
+		});
 	}
 	
 	onChangeType()

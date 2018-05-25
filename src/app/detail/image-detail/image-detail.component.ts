@@ -16,6 +16,7 @@ export class ImageDetailComponent implements OnInit, OnDestroy
 	leadSelectionSubscription: Subscription;
 	imageSrc: string;
 	hasFullSize = false;
+	showingShortSize = true;
 	
 	constructor(private tableHighlightingService: TableHighlightingService, private dataService: DataService) {}
 	
@@ -30,14 +31,24 @@ export class ImageDetailComponent implements OnInit, OnDestroy
 				{
 					this.imageSrc = 'data:image/png;base64,' + data.img;
 					this.hasFullSize = data.hasFullSize;
+					this.showingShortSize = true;
 				});
 			}
 			else
 			{
 				this.imageSrc = null;
 				this.hasFullSize = false;
+				this.showingShortSize = true;
 			}
 		});
+	}
+	
+	onClick()
+	{
+		if (this.hasFullSize)
+		{
+			this.showingShortSize = !this.showingShortSize;
+		}
 	}
 	
 	ngOnDestroy()

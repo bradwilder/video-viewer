@@ -1,13 +1,25 @@
 @import '../../../styles/base/_constants.scss';
 
+.img-container {
+	max-height: $imageMaxHeight;
+	overflow-y: hidden;
+	
+	&.scrollable {
+		overflow-y: auto;
+	}
+}
+
 img {
 	width: 100%;
 	cursor: auto;
 	pointer-events: none;
 	
 	&.hasFullSize {
-		height: $imageMaxHeight;
 		cursor: pointer;
 		pointer-events: auto;
+	}
+	
+	&.showingShortSize {
+		height: $imageMaxHeight;
 	}
 }

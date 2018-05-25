@@ -1,1 +1,3 @@
-<img *ngIf="imageSrc" [src]="imageSrc" [ngClass]="{hasFullSize: hasFullSize}">
+<div class="img-container" [ngClass]="{scrollable: !showingShortSize}">
+	<img *ngIf="imageSrc" [src]="imageSrc" [ngClass]="{hasFullSize: hasFullSize, showingShortSize: showingShortSize}" (click)="onClick()">
+</div>

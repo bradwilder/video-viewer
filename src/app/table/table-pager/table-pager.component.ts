@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TablePagerService } from './table-pager.service';
 
 @Component
@@ -9,6 +9,8 @@ import { TablePagerService } from './table-pager.service';
 })
 export class TablePagerComponent
 {
+	@Input() down = true;
+	
 	constructor(private tablePagerService: TablePagerService) {}
 	
 	private getItems()

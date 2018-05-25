@@ -1,7 +1,7 @@
 <div class="table-pager type__title">
 	<div class="table-pager__bg">
 		<span class="table-pager__custom-input">
-			<app-dropdown [data]="getItems()" [(selectedItem)]="tablePagerService.perPage" (selectedItemChange)="tablePagerService.onPerPageChanged()" [enabled]="tablePagerService.enabled" [down]="false" size="4em"></app-dropdown>
+			<app-dropdown [data]="getItems()" [(selectedItem)]="tablePagerService.perPage" (selectedItemChange)="tablePagerService.onPerPageChanged()" [enabled]="tablePagerService.enabled" [down]="down" size="4em"></app-dropdown>
 		</span>
 		<span class="table-pager__label"> / page</span>
 		
@@ -10,7 +10,7 @@
 			<app-button class="table-pager__btn table-pager__center-control" (click)="tablePagerService.onPrevPage()" [dark]="true" [enabled]="tablePagerService.enabled && tablePagerService.currentPageOption.key > 1" iconClass="fa fa-angle-left" paddingX="4px"></app-button>
 			<span class="table-pager__center-label">
 				<span class="table-pager__custom-input">
-					<app-dropdown [data]="tablePagerService.currentPageOptions" [(selectedItem)]="tablePagerService.currentPageOption" (selectedItemChange)="tablePagerService.onCurrPageChanged()" [enabled]="tablePagerService.enabled" [down]="false" size="5em"></app-dropdown>
+					<app-dropdown [data]="tablePagerService.currentPageOptions" [(selectedItem)]="tablePagerService.currentPageOption" (selectedItemChange)="tablePagerService.onCurrPageChanged()" [enabled]="tablePagerService.enabled" [down]="down" size="5em"></app-dropdown>
 				</span>
 				<span class="table-pager__label"> / {{ tablePagerService.totalPages }}</span>
 			</span>

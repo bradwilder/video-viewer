@@ -16,6 +16,8 @@ export class TablePagerService
 		{key: '200', value: '200'}
 	];
 	
+	private static emptyPageOption = {key: '', value: ''};
+	
 	static getDefaultPerPageOption()
 	{
 		return TablePagerService.perPageOptions[2];
@@ -32,7 +34,7 @@ export class TablePagerService
 	videos: Video[] = [];
 	videosChanged = new Subject<Video[]>();
 	currentPageOptions = [];
-	currentPageOption = {key: '', value: ''};
+	currentPageOption = TablePagerService.emptyPageOption;
 	
 	constructor(private videoService: VideoService)
 	{
@@ -52,14 +54,7 @@ export class TablePagerService
 		{
 			this.currentPageOptions.push({key: '' + (i + 1), value: '' + (i + 1)});
 		}
-		if (!this.currentPageOption.key)
-		{
-			this.currentPageOption = this.currentPageOptions[0];
-		}
-		else if (+this.currentPageOption.key > this.totalPages)
-		{
-			this.currentPageOption = this.currentPageOptions[this.totalPages - 1];
-		}
+		this.currentPageOption = this.currentPageOptions[0] ? this.currentPageOptions[0] : TablePagerService.emptyPageOption;
 	}
 	
 	setEnabled(enabled: boolean)
@@ -80,25 +75,25 @@ export class TablePagerService
 	
 	onFirstPage()
 	{
-		this.currentPageOption = this.currentPageOptions[0];
+		this.currentPageOption = this.currentPageOptions[0] ? this.currentPageOptions[0] : TablePagerService.emptyPageOption;
 		this.videosChanged.next(this.getPage());
 	}
 	
 	onPrevPage()
 	{
-		this.currentPageOption = this.currentPageOptions[Math.max(+this.currentPageOption.key - 2, 0)];
+		this.currentPageOption = this.currentPageOptions[Math.max(+this.currentPageOption.key - 2, 0)] ? this.currentPageOptions[Math.max(+this.currentPageOption.key - 2, 0)] : TablePagerService.emptyPageOption;
 		this.videosChanged.next(this.getPage());
 	}
 	
 	onNextPage()
 	{
-		this.currentPageOption = this.currentPageOptions[Math.min(+this.currentPageOption.key, this.totalPages - 1)];
+		this.currentPageOption = this.currentPageOptions[Math.min(+this.currentPageOption.key, this.totalPages - 1)] ? this.currentPageOptions[Math.min(+this.currentPageOption.key, this.totalPages - 1)] : TablePagerService.emptyPageOption;
 		this.videosChanged.next(this.getPage());
 	}
 	
 	onLastPage()
 	{
-		this.currentPageOption = this.currentPageOptions[this.totalPages - 1];
+		this.currentPageOption = this.currentPageOptions[this.totalPages - 1] ? this.currentPageOptions[this.totalPages - 1] : TablePagerService.emptyPageOption;
 		this.videosChanged.next(this.getPage());
 	}
 	

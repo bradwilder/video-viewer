@@ -37,4 +37,10 @@ export class DataService
 	{
 		return this.http.get('/api/series').map((result) => result.json().data);
 	}
+	
+	updatePending(video: Video)
+	{
+		const obj = {_id: video._id, fileName: video.fileName, pending: video.pending};
+		return this.http.post("/api/updatePending", obj);
+	}
 }

@@ -3,6 +3,7 @@ import { VideoService } from '../../video/video.service';
 import { Video } from '../../video/video.model';
 import { Subscription } from 'rxjs/Subscription';
 import { TableHighlightingService } from './table-highlighting.service';
+import { DataService } from '../../data.service';
 
 @Component
 ({
@@ -19,7 +20,7 @@ export class TableComponent implements OnInit, OnDestroy
 	leadSelection: Video;
 	leadSelectionSubscription: Subscription;
 	
-	constructor(private videoService: VideoService, private tableHighlightingService: TableHighlightingService) {}
+	constructor(private videoService: VideoService, private tableHighlightingService: TableHighlightingService, private dataService: DataService) {}
 	
 	ngOnInit()
 	{
@@ -78,12 +79,24 @@ export class TableComponent implements OnInit, OnDestroy
 	
 	onPendingChange(video: Video)
 	{
-		//debugger;
-		//console.log('Before: ' + video.pending);
-		video.pending = false;
-		//video.fileName = 'Hello.mp4';
-		//console.log('After: ' + video.pending);
-		// //console.log('Equal: ' + (this.videos[0] === video));
+		if (confirm('Are you sure you want to change the pending value?'))
+		{
+			this.dataService.updatePending(video).subscribe
+			(
+				null,
+				(error) =>
+				{
+					video.pending = true;
+				}
+			);
+		}
+		else
+		{
+			window.setTimeout(() =>
+			{
+				video.pending = true;
+			}, 1);
+		}
 	}
 	
 	ngOnDestroy()

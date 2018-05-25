@@ -13,9 +13,4 @@ export class ButtonComponent
 	@Input() primary1 = true;
 	@Input() iconClass = '';
 	@Input() name = 'app-checkbox';
-	
-	// setEnabled(enabled: boolean)
-	// {
-	// 	this.enabled = enabled;
-	// }
 }

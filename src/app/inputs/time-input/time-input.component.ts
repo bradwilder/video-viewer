@@ -19,12 +19,6 @@ export class TimeInputComponent
 	@Output() secondsChange = new EventEmitter<number>();
 	@Output() tolChange = new EventEmitter<number>();
 	
-	// setEnabled(enabled: boolean)
-	// {
-	// 	this.enabled = enabled;
-	// 	this.onChange();
-	// }
-	
 	onHoursChange()
 	{
 		this.hoursChange.emit(+this.hours);

@@ -31,12 +31,6 @@ export class DropdownComponent implements OnInit
 		});
 	}
 	
-	// setEnabled(enabled: boolean)
-	// {
-	// 	this.enabled = enabled;
-	// 	this.onChange();
-	// }
-	
 	itemClicked(item: {key: string, value: string})
 	{
 		if (item !== this.selectedItem)

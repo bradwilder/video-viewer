@@ -16,12 +16,6 @@ export class TextboxComponent
 	@Input() name = 'app-textbox';
 	@Output() textChange = new EventEmitter<string>();
 	
-	// setEnabled(enabled: boolean)
-	// {
-	// 	this.enabled = enabled;
-	// 	this.onChange();
-	// }
-	
 	onChange()
 	{
 		this.textChange.emit(this.text);

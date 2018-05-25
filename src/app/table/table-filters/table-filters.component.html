@@ -4,7 +4,7 @@
 			<span id="label">Showing {{ filteredCount }} {{ filteredCount !== totalCount ? ('of ' + totalCount + ' ') : '' }}video{{ totalCount !== 1 ? 's' : '' }}</span>
 			<span class="filter-btns">
 				<span class="filter-custom-input">
-					<app-toggle-switch name="enable" [(on)]="enabled" (onChange)="onEnable()"></app-toggle-switch>
+					<app-toggle-switch [(on)]="enabled" (onChange)="onEnable()"></app-toggle-switch>
 				</span>
 				<app-button class="filter-btn" (click)="open = !open" [dark]="true" [iconClass]="open ? 'fa fa-angle-up' : 'fa fa-angle-down'"></app-button>
 				<app-button class="filter-btn" (click)="onClear()" [dark]="true" [iconClass]="'fa fa-close'"></app-button>

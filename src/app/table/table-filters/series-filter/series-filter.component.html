@@ -6,7 +6,7 @@
 	</span>
 	<span class="filter-btns">
 		<span class="filter-custom-input">
-			<app-toggle-switch name="enable" [enabled]="filtersEnabled" [(on)]="enabled" (onChange)="onEnable()"></app-toggle-switch>
+			<app-toggle-switch [enabled]="filtersEnabled" [(on)]="enabled" (onChange)="onEnable()"></app-toggle-switch>
 		</span>
 		<app-button class="filter-btn" (click)="onClear()" [dark]="true" [enabled]="filtersEnabled" iconClass="fa fa-close"></app-button>
 	</span>

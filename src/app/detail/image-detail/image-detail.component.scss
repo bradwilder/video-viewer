@@ -1,0 +1,13 @@
+@import '../../../styles/base/_constants.scss';
+
+img {
+	width: 100%;
+	cursor: auto;
+	pointer-events: none;
+	
+	&.hasFullSize {
+		height: $imageMaxHeight;
+		cursor: pointer;
+		pointer-events: auto;
+	}
+}

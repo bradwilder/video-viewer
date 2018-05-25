@@ -13,18 +13,10 @@
 			<td class='pending'>
 				<app-checkbox [enabled]="isVideoLeadHighlighted(video) && video.pending" [(checked)]="video.pending" (checkedChange)="onPendingChange(video)"></app-checkbox>
 			</td>
-			<td>
-				<div class='videoNameDiv' style='width: 100%; height: 100%;'>
-					<span class='videoNameDisplayed'>{{ getDisplayName(video) }}</span>
-				</div>
-			</td>
-			<td class='videoTime' data-sortValue=''>{{ getDisplayTime(video) }}</td>
-			<td class='videoSeries'>
-				<div class='videoSeriesDiv' style='width: 100%; height: 100%;'>
-					<span class='seriesDisplayed'>{{ video.series }}</span>
-				</div>
-			</td>
-			<td class='videoLastModified' data-sortValue=''>{{ getLastModified(video) }}</td>
+			<td>{{ getDisplayName(video) }}</td>
+			<td>{{ getDisplayTime(video) }}</td>
+			<td>{{ video.series }}</td>
+			<td>{{ getLastModified(video) }}</td>
 		</tr>
 	</tbody>
 </table>

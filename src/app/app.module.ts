@@ -23,6 +23,7 @@ import { SeriesFilterComponent } from './table/table-filters/series-filter/serie
 import { TableFiltersService } from './table/table-filters/table-filters.service';
 import { TimeInputFilterDirective } from './inputs/time-input/time-input-filter.directive';
 import { TableHighlightingService } from './table/table/table-highlighting.service';
+import { ImageDetailComponent } from './detail/image-detail/image-detail.component';
 
 @NgModule
 ({
@@ -43,7 +44,8 @@ import { TableHighlightingService } from './table/table/table-highlighting.servi
 		NameFilterComponent,
 		TimeFilterComponent,
 		SeriesFilterComponent,
-		TimeInputFilterDirective
+		TimeInputFilterDirective,
+		ImageDetailComponent
 	],
 	imports:
 	[

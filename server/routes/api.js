@@ -4,6 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 const fs = require('fs');
 const path = require('path');
+const sizeOf = require('image-size');
 
 const database = 'viewer';
 //const database = 'test';
@@ -110,6 +111,27 @@ router.post('/updatePending', (req, res) =>
 			);
 		});
 	});
+});
+
+router.get('/thumb', (req, res) =>
+{
+	const fileName = '/Volumes/YO/YO/jb/thumbs/' + req.query.name + '.png';
+	
+	let img = fs.readFileSync(fileName);
+	let imgBase64 = new Buffer(img).toString('base64');
+	
+	response.data =
+	{
+		img: imgBase64,
+		hasFullSize: false
+	}
+	
+	if (sizeOf(fileName).height > 864)
+	{
+		response.data.hasFullSize = true;
+	}
+	
+	res.json(response);
 });
 
 module.exports = router;

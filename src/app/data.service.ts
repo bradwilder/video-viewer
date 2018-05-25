@@ -43,4 +43,9 @@ export class DataService
 		const obj = {_id: video._id, fileName: video.fileName, pending: video.pending};
 		return this.http.post("/api/updatePending", obj);
 	}
+	
+	getThumb(video: Video)
+	{
+		return this.http.get("/api/thumb?name=" + Video.getDisplayName(video)).map((result) => result.json().data);
+	}
 }

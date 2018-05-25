@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { VideoService } from '../../video/video.service';
 import { Video } from '../../video/video.model';
 import { Subscription } from 'rxjs/Subscription';
 import { TableHighlightingService } from './table-highlighting.service';
 import { DataService } from '../../data.service';
+import { TablePagerService } from '../table-pager/table-pager.service';
 
 @Component
 ({
@@ -20,11 +20,11 @@ export class TableComponent implements OnInit, OnDestroy
 	leadSelection: Video;
 	leadSelectionSubscription: Subscription;
 	
-	constructor(private videoService: VideoService, private tableHighlightingService: TableHighlightingService, private dataService: DataService) {}
+	constructor(private tablePagerService: TablePagerService, private tableHighlightingService: TableHighlightingService, private dataService: DataService) {}
 	
 	ngOnInit()
 	{
-		this.videosChangedSubscription = this.videoService.filteredVideosChanged.subscribe((videos) =>
+		this.videosChangedSubscription = this.tablePagerService.videosChanged.subscribe((videos) =>
 		{
 			this.videos = videos;
 		});

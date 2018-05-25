@@ -1,0 +1,47 @@
+@import '../../../styles/base/_constants.scss';
+
+.table-pager {
+	padding: 4px 5px;
+	border: 2px solid $secondary-4;
+	
+	&__bg {
+		background-color: $secondary-2;
+		position: relative;
+		border-radius: 6px;
+		padding: 4px;
+	}
+	
+	&__custom-input {
+		font-size: 12px;
+	}
+	
+	&__label {
+		font-size: 16px;
+	}
+	
+	&__enable-btn {
+		position: absolute;
+		right: 5px;
+		top: 4px;
+	}
+	
+	&__center-controls {
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%);
+		top: 4px;
+	}
+	
+	&__center-label {
+		margin: 0 20px;
+	}
+	
+	&__center-control {
+		margin-left: 2px;
+	}
+	
+	&__btn {
+		font-size: 12px;
+		padding: 0 2px;
+	}
+}

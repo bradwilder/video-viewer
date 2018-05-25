@@ -24,6 +24,8 @@ import { TableFiltersService } from './table/table-filters/table-filters.service
 import { TimeInputFilterDirective } from './inputs/time-input/time-input-filter.directive';
 import { TableHighlightingService } from './table/table/table-highlighting.service';
 import { ImageDetailComponent } from './detail/image-detail/image-detail.component';
+import { TablePagerComponent } from './table/table-pager/table-pager.component';
+import { TablePagerService } from './table/table-pager/table-pager.service';
 
 @NgModule
 ({
@@ -45,7 +47,8 @@ import { ImageDetailComponent } from './detail/image-detail/image-detail.compone
 		TimeFilterComponent,
 		SeriesFilterComponent,
 		TimeInputFilterDirective,
-		ImageDetailComponent
+		ImageDetailComponent,
+		TablePagerComponent
 	],
 	imports:
 	[
@@ -58,7 +61,8 @@ import { ImageDetailComponent } from './detail/image-detail/image-detail.compone
 		DataService,
 		VideoService,
 		TableFiltersService,
-		TableHighlightingService
+		TableHighlightingService,
+		TablePagerService
 	],
 	bootstrap: [AppComponent]
 })

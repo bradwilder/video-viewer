@@ -1,4 +1,4 @@
-<button [ngClass]="{'button--light': !dark, 'button--dark': dark, 'primary1': primary1, 'primary2': !primary1}" class="button" [name]="name" [id]="name" [disabled]="!enabled" type="button">
+<button [ngClass]="{'button--light': !dark, 'button--dark': dark, 'primary1': primary1, 'primary2': !primary1}" class="button" [name]="name" [id]="name" [disabled]="!enabled" type="button" [ngStyle]="{'padding-left': paddingX, 'padding-right': paddingX}">
 	<span [ngClass]="{button__label: iconClass === '', button__icon: iconClass !== ''}" class="{{iconClass}}">
 		<ng-content></ng-content>
 	</span>

@@ -12,5 +12,6 @@ export class ButtonComponent
 	@Input() dark = false;
 	@Input() primary1 = true;
 	@Input() iconClass = '';
+	@Input() paddingX = 0;
 	@Input() name = 'app-checkbox';
 }

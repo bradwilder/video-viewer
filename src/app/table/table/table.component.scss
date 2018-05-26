@@ -5,7 +5,12 @@ table {
 	border-collapse: collapse;
 	width: 100%;
 	text-align: left;
+	border: 2px solid $secondary-4;
 	outline: none;
+	
+	&:focus {
+		border: 2px solid $secondary-5;
+	}
 	
 	thead {
 		font-weight: bold;
@@ -118,5 +123,3 @@ tbody tr.highlight {
 		background-color: $primary-1-alt2;
 	}
 }
-
-

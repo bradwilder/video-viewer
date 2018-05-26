@@ -20,6 +20,7 @@ export class TableComponent implements OnInit, OnDestroy
 	selectionsSubscription: Subscription;
 	leadSelection: Video;
 	leadSelectionSubscription: Subscription;
+	toHighlight: number;
 	
 	constructor(private tablePagerService: TablePagerService, private tableHighlightingService: TableHighlightingService, private dataService: DataService, private tableSortingService: TableSortingService) {}
 	
@@ -28,6 +29,11 @@ export class TableComponent implements OnInit, OnDestroy
 		this.videosChangedSubscription = this.tablePagerService.videosChanged.subscribe((videos) =>
 		{
 			this.videos = videos;
+			if (this.toHighlight || this.toHighlight === 0)
+			{
+				this.tableHighlightingService.highlight(this.videos[this.toHighlight]);
+				this.toHighlight = null;
+			}
 		});
 		
 		this.selectionsSubscription = this.tableHighlightingService.selectionsChanged.subscribe((videos) =>
@@ -97,6 +103,87 @@ export class TableComponent implements OnInit, OnDestroy
 			{
 				video.pending = true;
 			}, 1);
+		}
+	}
+	
+	onKeyDown(event)
+	{
+		switch (event.keyCode)
+		{
+			case 38:
+				// Up-arrow
+				if (this.tableHighlightingService.leadSelected)
+				{
+					const currIndex = this.videos.indexOf(this.tableHighlightingService.leadSelected);
+					if (currIndex > 0)
+					{
+						this.tableHighlightingService.highlight(this.videos[currIndex - 1]);
+					}
+					else if (currIndex === 0)
+					{
+						if (this.tablePagerService.hasPrevPage())
+						{
+							this.toHighlight = this.videos.length - 1;
+							this.tablePagerService.onPrevPage();
+						}
+					}
+					else
+					{
+						// another page, maybe navigate
+						this.tablePagerService.showVideo(this.tableHighlightingService.leadSelected);
+					}
+				}
+				else
+				{
+					this.tableHighlightingService.highlight(this.videos[this.videos.length - 1]);
+				}
+				
+				event.preventDefault();
+				break;
+			case 40:
+				// Down arrow
+				if (this.tableHighlightingService.leadSelected)
+				{
+					const currIndex = this.videos.indexOf(this.tableHighlightingService.leadSelected);
+					if (currIndex !== -1 && currIndex < this.videos.length - 1)
+					{
+						this.tableHighlightingService.highlight(this.videos[currIndex + 1]);
+					}
+					else if (currIndex === this.videos.length - 1)
+					{
+						if (this.tablePagerService.hasNextPage())
+						{
+							this.toHighlight = 0;
+							this.tablePagerService.onNextPage();
+						}
+					}
+					else
+					{
+						// another page, maybe navigate
+						this.tablePagerService.showVideo(this.tableHighlightingService.leadSelected);
+					}
+				}
+				else
+				{
+					this.tableHighlightingService.highlight(this.videos[0]);
+				}
+				
+				event.preventDefault();
+				break;
+			case 8:
+				// Delete key
+				if (event.metaKey && this.tableHighlightingService.selections.length > 0)
+				{
+					var shouldDelete = confirm('Are you sure you want to delete the selection?');
+					if (shouldDelete)
+					{
+						// if (config.deleteRowCallback)
+						// {
+						// 	config.deleteRowCallback(allHighlighted);
+						// }
+					}
+				}
+				break;
 		}
 	}
 	

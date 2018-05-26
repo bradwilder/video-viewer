@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { TableFiltersService } from './table-filters.service';
 import { VideoService } from '../../video/video.service';
 import { Subscription } from 'rxjs/Subscription';
+import { TableHighlightingService } from '../table/table-highlighting.service';
 
 @Component
 ({
@@ -19,7 +20,7 @@ export class TableFiltersComponent implements OnInit, OnDestroy
 	totalCountChangedSubscription: Subscription;
 	filteredCountChangedSubscription: Subscription;
 	
-	constructor(private filtersService: TableFiltersService, private videoService: VideoService) {}
+	constructor(private filtersService: TableFiltersService, private videoService: VideoService, private tableHighlightingService: TableHighlightingService) {}
 	
 	ngOnInit()
 	{

@@ -34,7 +34,7 @@ export class TablePagerService
 	totalPages = 0;
 	perPage = TablePagerService.getDefaultPerPageOption();
 	enabled = true;
-	videos: Video[] = [];
+	private videos: Video[] = [];
 	videosChanged = new Subject<Video[]>();
 	currentPageOptions = [];
 	currentPageOption = TablePagerService.emptyPageOption;
@@ -65,6 +65,18 @@ export class TablePagerService
 		this.videosChanged.next(this.getPage());
 	}
 	
+	showVideo(video: Video)
+	{
+		const index = this.videos.indexOf(video);
+		if (index !== -1)
+		{
+			const pageNumber = Math.ceil((index + 1) / +this.perPage.key);
+			
+			this.currentPageOption = this.currentPageOptions[pageNumber - 1] ? this.currentPageOptions[pageNumber - 1] : TablePagerService.emptyPageOption;
+			this.videosChanged.next(this.getPage());
+		}
+	}
+	
 	onPerPageChanged()
 	{
 		this.computeCurrentAndTotal();
@@ -74,6 +86,16 @@ export class TablePagerService
 	onCurrPageChanged()
 	{
 		this.videosChanged.next(this.getPage());
+	}
+	
+	hasPrevPage()
+	{
+		return this.currentPageOption.key ? +this.currentPageOption.key > 1 : false;
+	}
+	
+	hasNextPage()
+	{
+		return this.currentPageOption.key ? +this.currentPageOption.key < this.totalPages - 1 : false;
 	}
 	
 	onFirstPage()

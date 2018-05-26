@@ -3,10 +3,10 @@ import { Subject } from 'rxjs/Subject';
 
 export class TableHighlightingService
 {
-	selections: Video[] = [];
+	private selections: Video[] = [];
 	selectionsChanged = new Subject<Video[]>();
 	
-	leadSelected: Video;
+	private leadSelected: Video;
 	leadSelectedChanged = new Subject<Video>();
 	
 	highlight(video: Video)
@@ -55,5 +55,15 @@ export class TableHighlightingService
 		
 		this.leadSelected = null;
 		this.leadSelectedChanged.next(this.leadSelected);
+	}
+	
+	getSelections()
+	{
+		return this.selections;
+	}
+	
+	getLeadSelected()
+	{
+		return this.leadSelected;
 	}
 }

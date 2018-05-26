@@ -3,8 +3,8 @@ import { Subject } from "rxjs/Subject";
 
 export class TableSortingService
 {
-	sortedColumn = 'name';
-	sortedAsc = true;
+	private sortedColumn = 'name';
+	private sortedAsc = true;
 	sortingChanged = new Subject<void>();
 	
 	headerClicked(column: string)

@@ -112,9 +112,11 @@ export class TableComponent implements OnInit, OnDestroy
 		{
 			case 38:
 				// Up-arrow
-				if (this.tableHighlightingService.leadSelected)
+				let selectedUp = this.tableHighlightingService.getLeadSelected();
+				
+				if (selectedUp)
 				{
-					const currIndex = this.videos.indexOf(this.tableHighlightingService.leadSelected);
+					const currIndex = this.videos.indexOf(selectedUp);
 					if (currIndex > 0)
 					{
 						this.tableHighlightingService.highlight(this.videos[currIndex - 1]);
@@ -130,7 +132,7 @@ export class TableComponent implements OnInit, OnDestroy
 					else
 					{
 						// another page, maybe navigate
-						this.tablePagerService.showVideo(this.tableHighlightingService.leadSelected);
+						this.tablePagerService.showVideo(selectedUp);
 					}
 				}
 				else
@@ -142,9 +144,11 @@ export class TableComponent implements OnInit, OnDestroy
 				break;
 			case 40:
 				// Down arrow
-				if (this.tableHighlightingService.leadSelected)
+				let selectedDown = this.tableHighlightingService.getLeadSelected();
+				
+				if (selectedDown)
 				{
-					const currIndex = this.videos.indexOf(this.tableHighlightingService.leadSelected);
+					const currIndex = this.videos.indexOf(selectedDown);
 					if (currIndex !== -1 && currIndex < this.videos.length - 1)
 					{
 						this.tableHighlightingService.highlight(this.videos[currIndex + 1]);
@@ -160,7 +164,7 @@ export class TableComponent implements OnInit, OnDestroy
 					else
 					{
 						// another page, maybe navigate
-						this.tablePagerService.showVideo(this.tableHighlightingService.leadSelected);
+						this.tablePagerService.showVideo(selectedDown);
 					}
 				}
 				else
@@ -190,15 +194,16 @@ export class TableComponent implements OnInit, OnDestroy
 				break;
 			case 8:
 				// Delete key
-				if (event.metaKey && this.tableHighlightingService.selections.length > 0)
+				if (event.metaKey)
 				{
-					var shouldDelete = confirm('Are you sure you want to delete the selection?');
-					if (shouldDelete)
+					let selections = this.tableHighlightingService.getSelections();
+					if (selections.length > 0)
 					{
-						// if (config.deleteRowCallback)
-						// {
-						// 	config.deleteRowCallback(allHighlighted);
-						// }
+						var shouldDelete = confirm('Are you sure you want to delete the selection?');
+						if (shouldDelete)
+						{
+							
+						}
 					}
 				}
 				break;

@@ -12,6 +12,9 @@ export class TablePagerService
 		{key: '10', value: '10'},
 		{key: '20', value: '20'},
 		{key: '50', value: '50'},
+		{key: '60', value: '60'},
+		{key: '70', value: '70'},
+		{key: '80', value: '80'},
 		{key: '100', value: '100'},
 		{key: '200', value: '200'}
 	];

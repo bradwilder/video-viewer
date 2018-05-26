@@ -170,6 +170,24 @@ export class TableComponent implements OnInit, OnDestroy
 				
 				event.preventDefault();
 				break;
+			case 37:
+				// Left arrow
+				if (this.tablePagerService.hasPrevPage())
+				{
+					this.tablePagerService.onPrevPage();
+				}
+				break;
+			case 39:
+				// Right arrow
+				if (this.tablePagerService.hasNextPage())
+				{
+					this.tablePagerService.onNextPage();
+				}
+				break;
+			case 88:
+				// x
+				this.tableHighlightingService.unhighlight();
+				break;
 			case 8:
 				// Delete key
 				if (event.metaKey && this.tableHighlightingService.selections.length > 0)

@@ -26,6 +26,7 @@ import { TableHighlightingService } from './table/table/table-highlighting.servi
 import { ImageDetailComponent } from './detail/image-detail/image-detail.component';
 import { TablePagerComponent } from './table/table-pager/table-pager.component';
 import { TablePagerService } from './table/table-pager/table-pager.service';
+import { TableSortingService } from './table/table/table-sorting.service';
 
 @NgModule
 ({
@@ -62,7 +63,8 @@ import { TablePagerService } from './table/table-pager/table-pager.service';
 		VideoService,
 		TableFiltersService,
 		TableHighlightingService,
-		TablePagerService
+		TablePagerService,
+		TableSortingService
 	],
 	bootstrap: [AppComponent]
 })

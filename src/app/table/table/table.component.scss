@@ -71,32 +71,32 @@ tr.even {
 
 /* Table sorting colors */
 thead tr th {
-    background-color: $primary-2-alt1;
-}
-
-.headerSortDown, .headerSortUp {
-    background-color: $primary-3-alt1;
+	background-color: $primary-2-alt1;
+	
+	&.sorted {
+		background-color: $primary-3-alt1;
+	}
 }
 
 
 /* Table sorting icons */
 tr th {
 	position: relative;
-}
-
-tr th.sortable {
-	cursor: pointer;
-	padding-right: 15px;
-}
-
-tr th span.sortIcon {
-	position: absolute;
-	right: 5px;
-}
-
-tr th span.sortIcon i {
-	position: relative;
-    vertical-align: middle;
+	
+	&.sortable {
+		cursor: pointer;
+		padding-right: 15px;
+	}
+	
+	& span.sortIcon {
+		position: absolute;
+		right: 5px;
+		
+		& i {
+			position: relative;
+			vertical-align: middle;
+		}
+	}
 }
 
 /* Table highlighting colors */

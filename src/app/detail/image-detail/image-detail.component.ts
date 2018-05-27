@@ -29,9 +29,18 @@ export class ImageDetailComponent implements OnInit, OnDestroy
 			{
 				this.dataService.getThumb(this.leadSelection).subscribe((data) =>
 				{
-					this.imageSrc = 'data:image/png;base64,' + data.img;
-					this.hasFullSize = data.hasFullSize;
-					this.showingShortSize = true;
+					if (data)
+					{
+						this.imageSrc = 'data:image/png;base64,' + data.img;
+						this.hasFullSize = data.hasFullSize;
+						this.showingShortSize = true;
+					}
+					else
+					{
+						this.imageSrc = null;
+						this.hasFullSize = false;
+						this.showingShortSize = true;
+					}
 				});
 			}
 			else

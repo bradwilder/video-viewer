@@ -1,6 +1,9 @@
 import { Video } from '../../video/video.model';
 import { Subject } from 'rxjs/Subject';
+import { VideoService } from '../../video/video.service';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class TableHighlightingService
 {
 	private selections: Video[] = [];
@@ -8,6 +11,21 @@ export class TableHighlightingService
 	
 	private leadSelected: Video;
 	leadSelectedChanged = new Subject<Video>();
+	
+	constructor(private videoService: VideoService)
+	{
+		this.videoService.filteredVideosChanged.subscribe((videos) =>
+		{
+			const selections = this.selections.slice(0);
+			selections.forEach((video) =>
+			{
+				if (!videos.includes(video))
+				{
+					this.unhighlightVideo(video);
+				}
+			});
+		});
+	}
 	
 	highlight(video: Video)
 	{
@@ -24,19 +42,9 @@ export class TableHighlightingService
 	
 	highlightMulti(video: Video)
 	{
-		let wasHighlighted = this.selections.includes(video);
-		
-		if (wasHighlighted)
+		if (this.selections.includes(video))
 		{
-			let index = this.selections.indexOf(video);
-			this.selections.splice(index, 1);
-			this.selectionsChanged.next(this.selections);
-			
-			if (this.leadSelected === video)
-			{
-				this.leadSelected = null;
-				this.leadSelectedChanged.next(this.leadSelected);
-			}
+			this.unhighlightVideo(video);
 		}
 		else
 		{
@@ -55,6 +63,22 @@ export class TableHighlightingService
 		
 		this.leadSelected = null;
 		this.leadSelectedChanged.next(this.leadSelected);
+	}
+	
+	unhighlightVideo(video: Video)
+	{
+		if (this.selections.includes(video))
+		{
+			let index = this.selections.indexOf(video);
+			this.selections.splice(index, 1);
+			this.selectionsChanged.next(this.selections);
+			
+			if (this.leadSelected === video)
+			{
+				this.leadSelected = null;
+				this.leadSelectedChanged.next(this.leadSelected);
+			}
+		}
 	}
 	
 	getSelections()

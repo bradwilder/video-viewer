@@ -131,7 +131,7 @@ export class TableComponent implements OnInit, OnDestroy
 					}
 					else
 					{
-						// another page, maybe navigate
+						// another page, navigate
 						this.tablePagerService.showVideo(selectedUp);
 					}
 				}
@@ -163,7 +163,7 @@ export class TableComponent implements OnInit, OnDestroy
 					}
 					else
 					{
-						// another page, maybe navigate
+						// another page, navigate
 						this.tablePagerService.showVideo(selectedDown);
 					}
 				}
@@ -202,7 +202,17 @@ export class TableComponent implements OnInit, OnDestroy
 						var shouldDelete = confirm('Are you sure you want to delete the selection?');
 						if (shouldDelete)
 						{
-							
+							this.dataService.deleteVideos(selections).subscribe
+							(
+								(res) =>
+								{
+									
+								},
+								(err) =>
+								{
+									
+								}
+							);
 						}
 					}
 				}

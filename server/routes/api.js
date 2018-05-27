@@ -41,6 +41,13 @@ let response =
 };
 
 // API
+const basePath = '/Volumes/YO/YO/jb';
+//const basePath = '/Volumes/YO/temp';
+
+const pendingPath = path.resolve(basePath, 'pendingvids');
+const videosPath = path.resolve(basePath, 'vids');
+const thumbPath = path.resolve(basePath, 'thumbs');
+
 router.get('/videos', (req, res) =>
 {
 	connection((db) =>
@@ -80,9 +87,6 @@ router.post('/updatePending', (req, res) =>
 		pending: req.body.pending
 	};
 	
-	const pendingPath = '/Volumes/YO/YO/jb/pendingvids';
-	const videosPath = '/Volumes/YO/YO/jb/vids';
-	
 	fs.rename(path.resolve(pendingPath, req.body.fileName), path.resolve(videosPath, req.body.fileName), (err) =>
 	{
 		if (err)
@@ -113,22 +117,66 @@ router.post('/updatePending', (req, res) =>
 	});
 });
 
+router.post('/deleteVideos', (req, res) =>
+{
+	req.body.forEach((video) =>
+	{
+		try
+		{
+			const videoFileName = path.resolve(video.pending ? pendingPath : videosPath, video.fileName);
+			fs.unlinkSync(videoFileName);
+			
+			const thumbFileName = path.resolve(thumbPath, video.fileName.slice(0, -4) + '.png');
+			fs.unlinkSync(thumbFileName);
+			
+			connection((db) =>
+			{
+				db.collection('videos').remove
+				(
+					{_id: ObjectID(video._id)},
+					(err, dbRes) =>
+					{
+						if (err)
+						{
+							sendError(err, res);
+							return;
+						}
+					}
+				);
+			});
+		}
+		catch (err)
+		{
+			sendError(err, res);
+			return;
+		}
+	});
+	
+	res.json(response);
+});
+
 router.get('/thumb', (req, res) =>
 {
-	const fileName = '/Volumes/YO/YO/jb/thumbs/' + req.query.name + '.png';
-	
-	let img = fs.readFileSync(fileName);
-	let imgBase64 = new Buffer(img).toString('base64');
-	
-	response.data =
+	if (fs.existsSync(thumbPath))
 	{
-		img: imgBase64,
-		hasFullSize: false
+		const fileName = path.resolve(thumbPath, req.query.name + '.png');
+		let img = fs.readFileSync(fileName);
+		let imgBase64 = new Buffer(img).toString('base64');
+		
+		response.data =
+		{
+			img: imgBase64,
+			hasFullSize: false
+		}
+		
+		if (sizeOf(fileName).height > 864)
+		{
+			response.data.hasFullSize = true;
+		}
 	}
-	
-	if (sizeOf(fileName).height > 864)
+	else
 	{
-		response.data.hasFullSize = true;
+		response.data = null;
 	}
 	
 	res.json(response);

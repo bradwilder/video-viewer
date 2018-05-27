@@ -13,7 +13,10 @@ export class TableFiltersService
 	{
 		this.enabled = enabled;
 		this.enabledChanged.next(this.enabled);
-		this.filtersChanged.next();
+		if (this.hasFilters())
+		{
+			this.filtersChanged.next();
+		}
 	}
 	
 	addFilter(filterName: string, filter: Function)
@@ -25,8 +28,11 @@ export class TableFiltersService
 	
 	removeFilter(name: string)
 	{
-		delete this.filters[name];
-		this.filtersChanged.next();
+		if (this.filters[name])
+		{
+			delete this.filters[name];
+			this.filtersChanged.next();
+		}
 	}
 	
 	clear()
@@ -54,5 +60,18 @@ export class TableFiltersService
 		}
 		
 		return filtered;
+	}
+	
+	private hasFilters()
+	{
+		for (const filterName in this.filters)
+		{
+			if (this.filters.hasOwnProperty(filterName))
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }

@@ -12,7 +12,7 @@ export class Video
 	
 	static getDisplayName(video: Video)
 	{
-		return video.fileName.slice(0,-4);
+		return video.fileName.slice(0, -4);
 	}
 	
 	static getDisplayTime(video: Video)

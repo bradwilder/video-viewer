@@ -12,6 +12,7 @@
 	cursor: pointer;
 	vertical-align: middle;
 	margin: 0;
+	overflow: hidden;
 	
 	&:hover:not([data-disabled="true"]) {
 		border-color: $secondary-5;
@@ -23,7 +24,9 @@
 	}
 	
 	&__input {
-		display: none;
+		position: absolute;
+		top: -3em;
+		right: -3em;
 	}
 	
 	&__check {

@@ -22,11 +22,14 @@ export class TableSortingService
 	
 	private nameSort(videoA: Video, videoB: Video)
 	{
-		if (videoA.fileName < videoB.fileName)
+		const strA = videoA.fileName.toLocaleLowerCase();
+		const strB = videoB.fileName.toLocaleLowerCase();
+		
+		if (strA < strB)
 		{
 			return -1;
 		}
-		else if (videoA.fileName === videoB.fileName)
+		else if (strA === strB)
 		{
 			return 0;
 		}
@@ -38,11 +41,14 @@ export class TableSortingService
 	
 	private nameSortDesc(videoA: Video, videoB: Video)
 	{
-		if (videoB.fileName < videoA.fileName)
+		const strA = videoA.fileName.toLocaleLowerCase();
+		const strB = videoB.fileName.toLocaleLowerCase();
+		
+		if (strB < strA)
 		{
 			return -1;
 		}
-		else if (videoB.fileName === videoA.fileName)
+		else if (strB === strA)
 		{
 			return 0;
 		}

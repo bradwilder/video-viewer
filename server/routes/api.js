@@ -41,8 +41,7 @@ let response =
 };
 
 // API
-const basePath = '/Volumes/YO/YO/jb';
-//const basePath = '/Volumes/YO/temp';
+const basePath = '/Volumes/YO';
 
 const pendingPath = path.resolve(basePath, 'pendingvids');
 const videosPath = path.resolve(basePath, 'vids');

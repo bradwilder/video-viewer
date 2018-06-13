@@ -22,15 +22,14 @@ export class DataService
 				video.fileName = videoData.fileName;
 				video.fileSize = videoData.fileSize;
 				video.lastModified = new Date(videoData.lastModified);
-				video.width = +videoData.width;
-				video.height = +videoData.height;
-				video.time = +videoData.time;
+				video.width = videoData.width;
+				video.height = videoData.height;
+				video.time = videoData.time;
 				video.pending = videoData.pending;
 				video.series = videoData.series;
 				return video;
 			});
 		});
-		
 	}
 	
 	getSeries()

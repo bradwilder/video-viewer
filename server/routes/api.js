@@ -7,7 +7,7 @@ const path = require('path');
 const sizeOf = require('image-size');
 
 const database = 'viewer';
-//const database = 'test';
+//const database = 'testDB';
 
 // Connect
 const connection = (closure) =>

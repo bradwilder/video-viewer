@@ -2,14 +2,14 @@ const MongoClient = require('mongodb').MongoClient;
 
 const connection = (closure) =>
 {
-	return MongoClient.connect('mongodb://localhost:27017/test', (err, client) =>
+	return MongoClient.connect('mongodb://localhost:27017/testDB', (err, client) =>
 	{
 		if (err)
 		{
 			return console.log(err);
 		}
 		
-		let db = client.db('test');
+		let db = client.db('testDB');
 		closure(db);
 	});
 };

@@ -38,13 +38,20 @@ npm install
 
 There is a small node project in `testDB/` that will generate a test database named `testDB`. To use it:
 
-1. Navigate to `testDB/`
+1. Start the database server:
+```
+mongod
+```
 
-2. Run `node testDB`
+2. In a separate tab, navigate to `testDB/`
 
-3. In `server/routes/api.js`, find the `database` variable and change it to `"testDB"`.
+3. Run `npm install`
 
-4. Restart the server.
+4. Run `node testDB`
+
+5. In `server/routes/api.js`, find the `database` variable and change it to `"testDB"`.
+
+6. Restart the server.
 
 ## Development server
 

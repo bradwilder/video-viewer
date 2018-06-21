@@ -9,6 +9,43 @@ Video Viewer is a web application that helps you manage a collection of videos.
 * Filter videos
 * Table paging
 
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+* [npm](https://www.npmjs.com/)
+
+### Installing
+
+1. Clone the repository from GitHub:
+```
+git clone git://github.com/bradwilder/video-viewer.git
+```
+
+2. Navigate into the cloned repository directory:
+```
+cd video-viewer
+```
+
+3. Install the npm dependencies:
+```
+npm install
+```
+
+### Test database
+
+There is a small node project in `testDB/` that will generate a test database named `testDB`. To use it:
+
+1. Navigate to `testDB/`
+
+2. Run `node testDB`
+
+3. In `server/routes/api.js`, find the `database` variable and change it to `"testDB"`.
+
+4. Restart the server.
+
 ## Development server
 
 Run `gulp server` to start the app and database servers. You can then navigate to `http://localhost:3007/` if you don't wish to use a dev server.

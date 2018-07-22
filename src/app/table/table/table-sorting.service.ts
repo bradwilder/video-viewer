@@ -39,7 +39,7 @@ export class TableSortingService
 		this.sortingChanged.next();
 	}
 	
-	sort(objects: Object[]): Object[]
+	sort(objects)
 	{
 		if (this.sortedColumn)
 		{

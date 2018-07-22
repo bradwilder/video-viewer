@@ -22,52 +22,35 @@ export class TableComponent implements OnInit, OnDestroy
 	private leadSelection: Video;
 	private leadSelectionSubscription: Subscription;
 	private toHighlight: number;
+	private sortableColumns =
+	[
+		{
+			name: 'Name',
+			function: this.nameSort,
+			sortAsc: true
+		},
+		{
+			name: 'Time',
+			function: this.timeSort
+		},
+		{
+			name: 'Series',
+			function: this.seriesSort
+		},
+		{
+			name: 'Modified',
+			function: this.modifiedSort
+		}
+	];
 	
 	constructor(private tablePagerService: TablePagerService, private tableHighlightingService: TableHighlightingService, private dataService: DataService, private tableSortingService: TableSortingService) {}
 	
 	ngOnInit()
 	{
-		this.tableSortingService.addSortingColumn(new TableSortingColumn('name', (videoA: Video, videoB: Video) =>
+		this.sortableColumns.forEach(column =>
 		{
-			const strA = videoA.fileName.toLocaleLowerCase();
-			const strB = videoB.fileName.toLocaleLowerCase();
-			
-			if (strA < strB)
-			{
-				return -1;
-			}
-			else if (strA === strB)
-			{
-				return 0;
-			}
-			else
-			{
-				return 1;
-			}
-		}), true);
-		
-		this.tableSortingService.addSortingColumn(new TableSortingColumn('time', (videoA: Video, videoB: Video) => videoA.time - videoB.time));
-		
-		this.tableSortingService.addSortingColumn(new TableSortingColumn('series', (videoA: Video, videoB: Video) =>
-		{
-			const seriesA = videoA.series ? videoA.series : '';
-			const seriesB = videoB.series ? videoB.series : '';
-			
-			if (seriesA < seriesB)
-			{
-				return -1;
-			}
-			else if (seriesA === seriesB)
-			{
-				return 0;
-			}
-			else
-			{
-				return 1;
-			}
-		}));
-		
-		this.tableSortingService.addSortingColumn(new TableSortingColumn('modified', (videoA: Video, videoB: Video) => videoA.lastModified.getTime() - videoB.lastModified.getTime()));
+			this.tableSortingService.addSortingColumn(new TableSortingColumn(column.name, column.function), column.sortAsc);
+		});
 		
 		this.videosChangedSubscription = this.tablePagerService.videosChanged.subscribe((videos) =>
 		{
@@ -88,6 +71,54 @@ export class TableComponent implements OnInit, OnDestroy
 		{
 			this.leadSelection = video;
 		});
+	}
+	
+	private nameSort(videoA: Video, videoB: Video)
+	{
+		const strA = videoA.fileName.toLocaleLowerCase();
+		const strB = videoB.fileName.toLocaleLowerCase();
+		
+		if (strA < strB)
+		{
+			return -1;
+		}
+		else if (strA === strB)
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	
+	private timeSort(videoA: Video, videoB: Video)
+	{
+		return videoA.time - videoB.time;
+	}
+	
+	private seriesSort(videoA: Video, videoB: Video)
+	{
+		const seriesA = videoA.series ? videoA.series : '';
+		const seriesB = videoB.series ? videoB.series : '';
+		
+		if (seriesA < seriesB)
+		{
+			return -1;
+		}
+		else if (seriesA === seriesB)
+		{
+			return 0;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+	
+	private modifiedSort(videoA: Video, videoB: Video)
+	{
+		return videoA.lastModified.getTime() - videoB.lastModified.getTime();
 	}
 	
 	getDisplayName(video: Video)

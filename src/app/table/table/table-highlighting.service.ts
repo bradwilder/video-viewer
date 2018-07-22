@@ -1,10 +1,11 @@
 import { Video } from '../../video/video.model';
 import { Subject } from 'rxjs/Subject';
 import { VideoService } from '../../video/video.service';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
+import { Subscription } from "rxjs/Subscription";
 
 @Injectable()
-export class TableHighlightingService
+export class TableHighlightingService implements OnDestroy
 {
 	private selections: Video[] = [];
 	selectionsChanged = new Subject<Video[]>();
@@ -12,9 +13,11 @@ export class TableHighlightingService
 	private leadSelected: Video;
 	leadSelectedChanged = new Subject<Video>();
 	
+	private filteredVideosSubscription: Subscription;
+	
 	constructor(private videoService: VideoService)
 	{
-		this.videoService.filteredVideosChanged.subscribe((videos) =>
+		this.filteredVideosSubscription = this.videoService.filteredVideosChanged.subscribe((videos) =>
 		{
 			const selections = this.selections.slice(0);
 			selections.forEach((video) =>
@@ -89,5 +92,10 @@ export class TableHighlightingService
 	getLeadSelected()
 	{
 		return this.leadSelected;
+	}
+	
+	ngOnDestroy()
+	{
+		this.filteredVideosSubscription.unsubscribe();
 	}
 }

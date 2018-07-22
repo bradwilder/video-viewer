@@ -1,19 +1,21 @@
 import { DataService } from "../data.service";
 import { Subject } from "rxjs/Subject";
-import { Injectable } from "@angular/core";
+import { Injectable, OnDestroy } from "@angular/core";
 import { Video } from "./video.model";
 import { TableFiltersService } from "../table/table-filters/table-filters.service";
 import { Subscription } from "rxjs/Subscription";
 import { TableSortingService } from "../table/table/table-sorting.service";
 
 @Injectable()
-export class VideoService
+export class VideoService implements OnDestroy
 {
 	private videos: Video[] = [];
 	private filteredVideos: Video[];
 	filteredVideosChanged = new Subject<Video[]>();
 	videosCountChanged = new Subject<number>();
 	filteredCountChanged = new Subject<number>();
+	private filtersSubscription: Subscription;
+	private sortingSubscription: Subscription;
 	
 	private series: string[] = [];
 	seriesChanged = new Subject<string[]>();
@@ -35,18 +37,24 @@ export class VideoService
 			this.seriesChanged.next(this.series);
 		});
 		
-		this.filtersService.filtersChanged.subscribe(() =>
+		this.filtersSubscription = this.filtersService.filtersChanged.subscribe(() =>
 		{
 			this.filteredVideos = this.filtersService.filter(this.videos);
 			this.filteredCountChanged.next(this.filteredVideos.length);
 			this.filteredVideosChanged.next(this.filteredVideos);
 		});
 		
-		this.sortingService.sortingChanged.subscribe(() =>
+		this.sortingSubscription = this.sortingService.sortingChanged.subscribe(() =>
 		{
 			this.videos = this.sortingService.sort(this.videos);
 			this.filteredVideos = this.filtersService.filter(this.videos);
 			this.filteredVideosChanged.next(this.filteredVideos);
 		});
+	}
+	
+	ngOnDestroy()
+	{
+		this.filtersSubscription.unsubscribe();
+		this.sortingSubscription.unsubscribe();
 	}
 }

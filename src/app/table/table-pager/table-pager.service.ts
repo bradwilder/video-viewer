@@ -1,11 +1,11 @@
 import { Subscription } from "rxjs/Subscription";
-import { Injectable } from "@angular/core";
+import { Injectable, OnDestroy } from "@angular/core";
 import { VideoService } from "../../video/video.service";
 import { Video } from "../../video/video.model";
 import { Subject } from "rxjs/Subject";
 
 @Injectable()
-export class TablePagerService
+export class TablePagerService implements OnDestroy
 {
 	private static perPageOptions =
 	[
@@ -38,10 +38,11 @@ export class TablePagerService
 	videosChanged = new Subject<Video[]>();
 	currentPageOptions = [];
 	currentPageOption = TablePagerService.emptyPageOption;
+	private filteredVideosSubscription: Subscription;
 	
 	constructor(private videoService: VideoService)
 	{
-		this.videoService.filteredVideosChanged.subscribe((videos) =>
+		this.filteredVideosSubscription = this.videoService.filteredVideosChanged.subscribe((videos) =>
 		{
 			this.videos = videos;
 			this.computeCurrentAndTotal();
@@ -132,5 +133,10 @@ export class TablePagerService
 		{
 			return this.videos;
 		}
+	}
+	
+	ngOnDestroy()
+	{
+		this.filteredVideosSubscription.unsubscribe();
 	}
 }

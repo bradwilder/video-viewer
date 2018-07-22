@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { TableHighlightingService } from './table-highlighting.service';
 import { DataService } from '../../data.service';
 import { TablePagerService } from '../table-pager/table-pager.service';
+import { TableSortingService } from './table-sorting.service';
 
 @Component
 ({
@@ -21,7 +22,7 @@ export class TableComponent implements OnInit, OnDestroy
 	leadSelectionSubscription: Subscription;
 	toHighlight: number;
 	
-	constructor(private tablePagerService: TablePagerService, private tableHighlightingService: TableHighlightingService, private dataService: DataService) {}
+	constructor(private tablePagerService: TablePagerService, private tableHighlightingService: TableHighlightingService, private dataService: DataService, private tableSortingService: TableSortingService) {}
 	
 	ngOnInit()
 	{

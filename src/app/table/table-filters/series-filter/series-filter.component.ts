@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { TableFiltersService } from '../table-filters.service';
 import { Video } from '../../../video/video.model';
-import { VideoService } from '../../../video/video.service';
+import { SeriesService } from '../../../video/series.service';
 
 @Component
 ({
@@ -32,7 +32,7 @@ export class SeriesFilterComponent implements OnInit
 	seriesOptions = SeriesFilterComponent.initialSeriesNameOptions;
 	selectedSeries = SeriesFilterComponent.initialSeriesNameOptions[0];
 	
-	constructor(private filtersService: TableFiltersService, private videoService: VideoService) {}
+	constructor(private filtersService: TableFiltersService, private seriesService: SeriesService) {}
 	
 	private getItems()
 	{
@@ -51,7 +51,7 @@ export class SeriesFilterComponent implements OnInit
 			this.onClear();
 		});
 		
-		this.videoService.seriesChanged.subscribe((seriesArr) =>
+		this.seriesService.seriesChanged.subscribe((seriesArr) =>
 		{
 			this.seriesOptions = SeriesFilterComponent.initialSeriesNameOptions.concat(seriesArr.map((seriesName) =>
 			{

@@ -7,6 +7,7 @@ import { DataService } from './data.service';
 import { HttpModule } from '@angular/http';
 import { TableComponent } from './table/table/table.component';
 import { VideoService } from './video/video.service';
+import { SeriesService } from './video/series.service';
 import { TableFiltersComponent } from './table/table-filters/table-filters.component';
 import { ToggleSwitchComponent } from './inputs/toggle-switch/toggle-switch.component';
 import { ButtonComponent } from './inputs/button/button.component';
@@ -61,6 +62,7 @@ import { TableSortingService } from './table/table/table-sorting.service';
 	[
 		DataService,
 		VideoService,
+		SeriesService,
 		TableFiltersService,
 		TableHighlightingService,
 		TablePagerService,

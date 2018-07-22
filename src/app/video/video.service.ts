@@ -17,9 +17,6 @@ export class VideoService implements OnDestroy
 	private filtersSubscription: Subscription;
 	private sortingSubscription: Subscription;
 	
-	private series: string[] = [];
-	seriesChanged = new Subject<string[]>();
-	
 	constructor(private dataService: DataService, private filtersService: TableFiltersService, private sortingService: TableSortingService)
 	{
 		this.dataService.getVideos().subscribe((res) =>
@@ -29,12 +26,6 @@ export class VideoService implements OnDestroy
 			this.filteredVideos = this.filtersService.filter(this.videos);
 			this.filteredCountChanged.next(this.filteredVideos.length);
 			this.filteredVideosChanged.next(this.filteredVideos);
-		});
-		
-		this.dataService.getSeries().subscribe((res) =>
-		{
-			this.series = res;
-			this.seriesChanged.next(this.series);
 		});
 		
 		this.filtersSubscription = this.filtersService.filtersChanged.subscribe(() =>

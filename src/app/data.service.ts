@@ -51,6 +51,6 @@ export class DataService
 	
 	getThumb(video: Video)
 	{
-		return this.http.get("/api/thumb?name=" + Video.getDisplayName(video)).map((result) => result.json().data);
+		return this.http.get("/api/thumb?name=" + encodeURIComponent(Video.getDisplayName(video))).map((result) => result.json().data);
 	}
 }

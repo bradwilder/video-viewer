@@ -31,15 +31,18 @@ export class TableComponent implements OnInit, OnDestroy
 		},
 		{
 			name: 'Time',
-			function: this.timeSort
+			function: this.timeSort,
+			sortAsc: undefined
 		},
 		{
 			name: 'Series',
-			function: this.seriesSort
+			function: this.seriesSort,
+			sortAsc: undefined
 		},
 		{
 			name: 'Modified',
-			function: this.modifiedSort
+			function: this.modifiedSort,
+			sortAsc: undefined
 		}
 	];
 	

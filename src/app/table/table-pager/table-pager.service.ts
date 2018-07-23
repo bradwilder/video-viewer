@@ -96,7 +96,7 @@ export class TablePagerService implements OnDestroy
 	
 	hasNextPage()
 	{
-		return this.currentPageOption.key ? +this.currentPageOption.key < this.totalPages - 1 : false;
+		return this.currentPageOption.key ? +this.currentPageOption.key < this.totalPages : false;
 	}
 	
 	onFirstPage()

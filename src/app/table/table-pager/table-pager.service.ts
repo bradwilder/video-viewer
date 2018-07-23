@@ -61,7 +61,7 @@ export class TablePagerService implements OnDestroy
 		this.currentPageOption = this.currentPageOptions[0] ? this.currentPageOptions[0] : TablePagerService.emptyPageOption;
 	}
 	
-	setEnabled(enabled: boolean)
+	setEnabled()
 	{
 		this.videosChanged.next(this.getPage());
 	}

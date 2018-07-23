@@ -202,7 +202,7 @@ export class TableComponent implements OnInit, OnDestroy
 					{
 						if (this.tablePagerService.hasPrevPage())
 						{
-							this.toHighlight = +this.tablePagerService.perPage.key - 1;
+							this.toHighlight = this.tablePagerService.getPerPageValue() - 1;
 							this.tablePagerService.onPrevPage();
 						}
 					}

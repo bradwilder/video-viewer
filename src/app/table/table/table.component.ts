@@ -110,22 +110,22 @@ export class TableComponent implements OnInit, OnDestroy
 		return videoA.lastModified.getTime() - videoB.lastModified.getTime();
 	}
 	
-	getDisplayName(video: Video)
+	private getDisplayName(video: Video)
 	{
 		return Video.getDisplayName(video);
 	}
 	
-	getDisplayTime(video: Video)
+	private getDisplayTime(video: Video)
 	{
 		return Video.getDisplayTime(video);
 	}
 	
-	getLastModified(video: Video)
+	private getLastModified(video: Video)
 	{
 		return Video.getLastModified(video);
 	}
 	
-	onRowClick(event: MouseEvent, video: Video)
+	private onRowClick(event: MouseEvent, video: Video)
 	{
 		if (event.ctrlKey || event.metaKey)
 		{
@@ -137,7 +137,7 @@ export class TableComponent implements OnInit, OnDestroy
 		}
 	}
 	
-	onPendingChange(video: Video)
+	private onPendingChange(video: Video)
 	{
 		if (confirm('Are you sure you want to change the pending value?'))
 		{
@@ -159,7 +159,7 @@ export class TableComponent implements OnInit, OnDestroy
 		}
 	}
 	
-	onKeyDown(event)
+	private onKeyDown(event)
 	{
 		switch (event.keyCode)
 		{

@@ -86,7 +86,7 @@ export class TableHighlightingService implements OnDestroy
 	
 	getSelections()
 	{
-		return this.selections;
+		return this.selections.slice();
 	}
 	
 	getLeadSelected()

@@ -1,21 +1,21 @@
 <div class="table-pager type__title">
 	<div class="table-pager__bg">
 		<span class="table-pager__custom-input">
-			<app-dropdown [data]="getItems()" [(selectedItem)]="tablePagerService.perPage" (selectedItemChange)="tablePagerService.onPerPageChanged()" [enabled]="tablePagerService.enabled" [down]="down" size="4em"></app-dropdown>
+			<app-dropdown [data]="getItems()" [(selectedIndex)]="tablePagerService.perPageIndex" (selectedIndexChange)="tablePagerService.onPerPageChanged()" [enabled]="tablePagerService.enabled" [down]="down" size="4em"></app-dropdown>
 		</span>
 		<span class="table-pager__label"> / page</span>
 		
 		<span class="table-pager__center-controls">
-			<app-button class="table-pager__btn table-pager__center-control" (click)="tablePagerService.onFirstPage()" [dark]="true" [enabled]="tablePagerService.enabled && tablePagerService.currentPageOption.key > 1" iconClass="fa fa-angle-double-left" paddingX="4px"></app-button>
-			<app-button class="table-pager__btn table-pager__center-control" (click)="tablePagerService.onPrevPage()" [dark]="true" [enabled]="tablePagerService.enabled && tablePagerService.currentPageOption.key > 1" iconClass="fa fa-angle-left" paddingX="4px"></app-button>
+			<app-button class="table-pager__btn table-pager__center-control" (click)="tablePagerService.onFirstPage()" [dark]="true" [enabled]="tablePagerService.enabled && tablePagerService.getCurrentPageValue() > 1" iconClass="fa fa-angle-double-left" paddingX="4px"></app-button>
+			<app-button class="table-pager__btn table-pager__center-control" (click)="tablePagerService.onPrevPage()" [dark]="true" [enabled]="tablePagerService.enabled && tablePagerService.getCurrentPageValue() > 1" iconClass="fa fa-angle-left" paddingX="4px"></app-button>
 			<span class="table-pager__center-label">
 				<span class="table-pager__custom-input">
-					<app-dropdown [data]="tablePagerService.currentPageOptions" [(selectedItem)]="tablePagerService.currentPageOption" (selectedItemChange)="tablePagerService.onCurrPageChanged()" [enabled]="tablePagerService.enabled" [down]="down" size="5em"></app-dropdown>
+					<app-dropdown [data]="tablePagerService.currentPageOptions" [(selectedIndex)]="tablePagerService.currentPageOptionIndex" (selectedIndexChange)="tablePagerService.onCurrPageChanged()" [enabled]="tablePagerService.enabled" [down]="down" size="5em"></app-dropdown>
 				</span>
 				<span class="table-pager__label"> / {{ tablePagerService.totalPages }}</span>
 			</span>
-			<app-button class="table-pager__btn table-pager__center-control" (click)="tablePagerService.onNextPage()" [dark]="true" [enabled]="tablePagerService.enabled && tablePagerService.currentPageOption.key != tablePagerService.totalPages" iconClass="fa fa-angle-right" paddingX="4px"></app-button>
-			<app-button class="table-pager__btn table-pager__center-control" (click)="tablePagerService.onLastPage()" [dark]="true" [enabled]="tablePagerService.enabled && tablePagerService.currentPageOption.key != tablePagerService.totalPages" iconClass="fa fa-angle-double-right" paddingX="4px"></app-button>
+			<app-button class="table-pager__btn table-pager__center-control" (click)="tablePagerService.onNextPage()" [dark]="true" [enabled]="tablePagerService.enabled && tablePagerService.getCurrentPageValue() != tablePagerService.totalPages" iconClass="fa fa-angle-right" paddingX="4px"></app-button>
+			<app-button class="table-pager__btn table-pager__center-control" (click)="tablePagerService.onLastPage()" [dark]="true" [enabled]="tablePagerService.enabled && tablePagerService.getCurrentPageValue() != tablePagerService.totalPages" iconClass="fa fa-angle-double-right" paddingX="4px"></app-button>
 		</span>
 		
 		<span class="table-pager__enable-btn">

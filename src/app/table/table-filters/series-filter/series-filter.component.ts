@@ -14,23 +14,23 @@ export class SeriesFilterComponent implements OnInit
 	private static filterName = 'series';
 	private static typeItems =
 	[
-		{key: '0', value: 'Include'},
-		{key: '1', value: 'Exclude'},
-		{key: '2', value: 'Only'}
+		{key: 0, value: 'Include'},
+		{key: 1, value: 'Exclude'},
+		{key: 2, value: 'Only'}
 	];
 	private static initialSeriesNameOptions =
 	[
-		{key: '', value: '<All>'}
+		{key: 0, value: '<All>'}
 	];
 	
-	selectedType = SeriesFilterComponent.typeItems[0];
+	selectedTypeIndex = 0;
 	enabled = false;
 	filtersEnabled = false;
 	enabledSubscription: Subscription;
 	clearedSubscription: Subscription;
 	seriesSubscription: Subscription;
 	seriesOptions = SeriesFilterComponent.initialSeriesNameOptions;
-	selectedSeries = SeriesFilterComponent.initialSeriesNameOptions[0];
+	selectedSeriesIndex = 0;
 	
 	constructor(private filtersService: TableFiltersService, private seriesService: SeriesService) {}
 	
@@ -53,16 +53,16 @@ export class SeriesFilterComponent implements OnInit
 		
 		this.seriesService.seriesChanged.subscribe((seriesArr) =>
 		{
-			this.seriesOptions = SeriesFilterComponent.initialSeriesNameOptions.concat(seriesArr.map((seriesName) =>
+			this.seriesOptions = SeriesFilterComponent.initialSeriesNameOptions.concat(seriesArr.map((seriesName, i) =>
 			{
-				return {key: seriesName, value: seriesName};
+				return {key: i + 1, value: seriesName};
 			}));
 		});
 	}
 	
 	onChangeType()
 	{
-		if (this.selectedType.key !== '0')
+		if (this.selectedTypeIndex !== 0)
 		{
 			this.filtersService.addFilter(SeriesFilterComponent.filterName, this.filterFunction.bind(this));
 		}
@@ -81,7 +81,7 @@ export class SeriesFilterComponent implements OnInit
 	{
 		if (this.enabled)
 		{
-			if (this.selectedType.key !== '0')
+			if (this.selectedTypeIndex !== 0)
 			{
 				this.filtersService.addFilter(SeriesFilterComponent.filterName, this.filterFunction.bind(this));
 			}
@@ -98,27 +98,27 @@ export class SeriesFilterComponent implements OnInit
 	
 	onClear()
 	{
-		this.selectedType = SeriesFilterComponent.typeItems[0];
-		this.selectedSeries = SeriesFilterComponent.initialSeriesNameOptions[0];
+		this.selectedTypeIndex = 0;
+		this.selectedSeriesIndex = 0;
 		this.enabled = false;
 		this.onEnable();
 	}
 	
 	filterFunction(video: Video)
 	{
-		if (this.selectedType.key === '1')
+		if (this.selectedTypeIndex === 1)
 		{
 			return !video.series;
 		}
-		else if (this.selectedType.key === '2')
+		else if (this.selectedTypeIndex === 2)
 		{
-			if (this.selectedSeries.key === '')
+			if (this.selectedSeriesIndex === 0)
 			{
 				return video.series;
 			}
 			else
 			{
-				return video.series && video.series === this.selectedSeries.key;
+				return video.series && video.series === this.seriesOptions[this.selectedSeriesIndex].value;
 			}
 		}
 	}

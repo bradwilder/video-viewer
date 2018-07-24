@@ -7,17 +7,7 @@ import { Subject } from "rxjs/Subject";
 @Injectable()
 export class TablePagerService implements OnDestroy
 {
-	static perPageOptions =
-	[
-		{key: 10, value: 10},
-		{key: 20, value: 20},
-		{key: 50, value: 50},
-		{key: 60, value: 60},
-		{key: 70, value: 70},
-		{key: 80, value: 80},
-		{key: 100, value: 100},
-		{key: 200, value: 200}
-	];
+	static perPageValues = [10, 20, 50, 60, 70, 80, 100, 200];
 	
 	totalPages = 0;
 	perPageIndex = 2;
@@ -68,7 +58,7 @@ export class TablePagerService implements OnDestroy
 	
 	getPerPageValue()
 	{
-		return TablePagerService.perPageOptions[this.perPageIndex].key;
+		return TablePagerService.perPageValues[this.perPageIndex];
 	}
 	
 	getCurrentPageValue()

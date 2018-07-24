@@ -15,6 +15,11 @@ export class TablePagerComponent
 	
 	private getItems()
 	{
-		return TablePagerService.perPageOptions;
+		return this.wrapDropdownItems(TablePagerService.perPageValues);
+	}
+	
+	private wrapDropdownItems(numbers: number[])
+	{
+		return numbers.map(number => {return {key: number, value: number};});
 	}
 }

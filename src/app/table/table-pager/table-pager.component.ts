@@ -15,6 +15,6 @@ export class TablePagerComponent
 	
 	private getItems()
 	{
-		return TablePagerService.getPerPageOptions();
+		return TablePagerService.perPageOptions;
 	}
 }

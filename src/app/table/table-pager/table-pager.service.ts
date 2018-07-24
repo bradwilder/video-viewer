@@ -7,7 +7,7 @@ import { Subject } from "rxjs/Subject";
 @Injectable()
 export class TablePagerService implements OnDestroy
 {
-	private static perPageOptions =
+	static perPageOptions =
 	[
 		{key: 10, value: 10},
 		{key: 20, value: 20},
@@ -18,11 +18,6 @@ export class TablePagerService implements OnDestroy
 		{key: 100, value: 100},
 		{key: 200, value: 200}
 	];
-	
-	static getPerPageOptions()
-	{
-		return TablePagerService.perPageOptions;
-	}
 	
 	totalPages = 0;
 	perPageIndex = 2;

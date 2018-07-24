@@ -94,6 +94,16 @@ export class TableHighlightingService implements OnDestroy
 		return this.leadSelected;
 	}
 	
+	isHighlighted(video: Video)
+	{
+		return this.selections.includes(video);
+	}
+	
+	isLeadHighlighted(video: Video)
+	{
+		return this.leadSelected === video;
+	}
+	
 	ngOnDestroy()
 	{
 		this.filteredVideosSubscription.unsubscribe();

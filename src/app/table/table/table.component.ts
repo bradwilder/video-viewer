@@ -17,10 +17,6 @@ export class TableComponent implements OnInit, OnDestroy
 {
 	private videos: Video[];
 	private videosChangedSubscription: Subscription;
-	private selections: Video[] = [];
-	private selectionsSubscription: Subscription;
-	private leadSelection: Video;
-	private leadSelectionSubscription: Subscription;
 	private toHighlight: number;
 	private sortableColumns =
 	[
@@ -63,16 +59,6 @@ export class TableComponent implements OnInit, OnDestroy
 				this.tableHighlightingService.highlight(this.videos[this.toHighlight]);
 				this.toHighlight = null;
 			}
-		});
-		
-		this.selectionsSubscription = this.tableHighlightingService.selectionsChanged.subscribe((videos) =>
-		{
-			this.selections = videos;
-		});
-		
-		this.leadSelectionSubscription = this.tableHighlightingService.leadSelectedChanged.subscribe((video) =>
-		{
-			this.leadSelection = video;
 		});
 	}
 	
@@ -149,16 +135,6 @@ export class TableComponent implements OnInit, OnDestroy
 		{
 			this.tableHighlightingService.highlight(video);
 		}
-	}
-	
-	isVideoHighlighted(video: Video)
-	{
-		return this.selections.includes(video);
-	}
-	
-	isVideoLeadHighlighted(video: Video)
-	{
-		return this.leadSelection === video;
 	}
 	
 	onPendingChange(video: Video)
@@ -300,7 +276,5 @@ export class TableComponent implements OnInit, OnDestroy
 	ngOnDestroy()
 	{
 		this.videosChangedSubscription.unsubscribe();
-		this.selectionsSubscription.unsubscribe();
-		this.leadSelectionSubscription.unsubscribe();
 	}
 }

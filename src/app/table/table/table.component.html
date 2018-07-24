@@ -6,9 +6,9 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let video of videos; let i = index" [ngClass]="{odd: i % 2 === 1, even: i % 2 === 0, highlight: isVideoHighlighted(video), 'highlight-last': isVideoLeadHighlighted(video)}" (click)="onRowClick($event, video)">
+		<tr *ngFor="let video of videos; let i = index" [ngClass]="{odd: i % 2 === 1, even: i % 2 === 0, highlight: tableHighlightingService.isHighlighted(video), 'highlight-last': tableHighlightingService.isLeadHighlighted(video)}" (click)="onRowClick($event, video)">
 			<td class='pending'>
-				<app-checkbox [enabled]="isVideoLeadHighlighted(video) && video.pending" [(checked)]="video.pending" (checkedChange)="onPendingChange(video)"></app-checkbox>
+				<app-checkbox [enabled]="tableHighlightingService.isLeadHighlighted(video) && video.pending" [(checked)]="video.pending" (checkedChange)="onPendingChange(video)"></app-checkbox>
 			</td>
 			<td>{{ getDisplayName(video) }}</td>
 			<td>{{ getDisplayTime(video) }}</td>

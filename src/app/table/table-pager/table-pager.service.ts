@@ -18,11 +18,6 @@ export class TablePagerService implements OnDestroy
 		{key: 100, value: 100},
 		{key: 200, value: 200}
 	];
-		
-	private static getDefaultPerPageOption()
-	{
-		return TablePagerService.perPageOptions[2];
-	}
 	
 	static getPerPageOptions()
 	{

@@ -5,7 +5,7 @@
 		</li>
 	</ul>
 	<div class="dropdown__selection-area" (click)="open = !open">
-		<span class="dropdown__selected-value">{{ selectedIndex !== -1 ? data[selectedIndex].value : '' }}</span>
+		<span class="dropdown__selected-value">{{ selectedIndex !== -1 && data[selectedIndex] ? data[selectedIndex].value : '' }}</span>
 		<i class="dropdown__arrow fa"></i>
 	</div>
 </div>

@@ -19,19 +19,27 @@ export class TableFiltersService
 		}
 	}
 	
-	addFilter(filterName: string, filter: Function)
+	addFilter(name: string, filter: Function)
 	{
-		this.removeFilter(filterName);
-		this.filters[filterName] = filter;
+		this.removeFilterImpl(name, true);
+		this.filters[name] = filter;
 		this.filtersChanged.next();
 	}
 	
 	removeFilter(name: string)
 	{
+		this.removeFilterImpl(name, false);
+	}
+	
+	private removeFilterImpl(name: string, suppressEvent: boolean)
+	{
 		if (this.filters[name])
 		{
 			delete this.filters[name];
-			this.filtersChanged.next();
+			if (!suppressEvent)
+			{
+				this.filtersChanged.next();
+			}
 		}
 	}
 	
@@ -50,11 +58,11 @@ export class TableFiltersService
 		
 		if (this.enabled)
 		{
-			for (const filterName in this.filters)
+			for (const name in this.filters)
 			{
-				if (this.filters.hasOwnProperty(filterName))
+				if (this.filters.hasOwnProperty(name))
 				{
-					filtered = filtered.filter(this.filters[filterName]);
+					filtered = filtered.filter(this.filters[name]);
 				}
 			}
 		}
@@ -64,9 +72,9 @@ export class TableFiltersService
 	
 	private hasFilters()
 	{
-		for (const filterName in this.filters)
+		for (const name in this.filters)
 		{
-			if (this.filters.hasOwnProperty(filterName))
+			if (this.filters.hasOwnProperty(name))
 			{
 				return true;
 			}

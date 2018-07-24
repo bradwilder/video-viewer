@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { TablePagerService } from './table-pager.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component
 ({
@@ -10,8 +11,20 @@ import { TablePagerService } from './table-pager.service';
 export class TablePagerComponent
 {
 	@Input() down = true;
+	totalPagesSubsription: Subscription;
+	currentPageOptions;
 	
-	constructor(private tablePagerService: TablePagerService) {}
+	constructor(private tablePagerService: TablePagerService)
+	{
+		this.totalPagesSubsription = this.tablePagerService.totalPagesChanged.subscribe(totalPages =>
+		{
+			this.currentPageOptions = [];
+			for (let i = 1; i <= totalPages; i++)
+			{
+				this.currentPageOptions.push({key: i, value: i});
+			}
+		});
+	}
 	
 	private getItems()
 	{

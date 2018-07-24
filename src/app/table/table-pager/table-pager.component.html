@@ -10,7 +10,7 @@
 			<app-button class="table-pager__btn table-pager__center-control" (click)="tablePagerService.onPrevPage()" [dark]="true" [enabled]="tablePagerService.enabled && tablePagerService.getCurrentPageValue() > 1" iconClass="fa fa-angle-left" paddingX="4px"></app-button>
 			<span class="table-pager__center-label">
 				<span class="table-pager__custom-input">
-					<app-dropdown [data]="tablePagerService.currentPageOptions" [(selectedIndex)]="tablePagerService.currentPageOptionIndex" (selectedIndexChange)="tablePagerService.onCurrPageChanged()" [enabled]="tablePagerService.enabled" [down]="down" size="5em"></app-dropdown>
+					<app-dropdown [data]="currentPageOptions" [(selectedIndex)]="tablePagerService.currentPageOptionIndex" (selectedIndexChange)="tablePagerService.onCurrPageChanged()" [enabled]="tablePagerService.enabled" [down]="down" size="5em"></app-dropdown>
 				</span>
 				<span class="table-pager__label"> / {{ tablePagerService.totalPages }}</span>
 			</span>

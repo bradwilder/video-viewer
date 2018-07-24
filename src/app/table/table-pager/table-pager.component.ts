@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { TablePagerService } from './table-pager.service';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs/Subscription';
 	templateUrl: './table-pager.component.html',
 	styleUrls: ['./table-pager.component.scss']
 })
-export class TablePagerComponent
+export class TablePagerComponent implements OnDestroy
 {
 	@Input() down = true;
 	totalPagesSubsription: Subscription;
@@ -34,5 +34,10 @@ export class TablePagerComponent
 	private wrapDropdownItems(numbers: number[])
 	{
 		return numbers.map(number => {return {key: number, value: number};});
+	}
+	
+	ngOnDestroy()
+	{
+		this.totalPagesSubsription.unsubscribe();
 	}
 }

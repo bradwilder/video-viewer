@@ -17,7 +17,7 @@ export class PendingFilterComponent implements OnInit
 		{key: 1, value: 'Exclude'},
 		{key: 2, value: 'Only'}
 	];
-	selectedIndex = 0;
+	selectedKey = 0;
 	enabled = false;
 	filtersEnabled = false;
 	enabledSubscription: Subscription;
@@ -45,7 +45,7 @@ export class PendingFilterComponent implements OnInit
 	
 	onChange()
 	{
-		if (this.selectedIndex !== 0)
+		if (this.selectedKey !== 0)
 		{
 			this.filtersService.addFilter(PendingFilterComponent.filterName, this.filterFunction.bind(this));
 		}
@@ -59,7 +59,7 @@ export class PendingFilterComponent implements OnInit
 	{
 		if (this.enabled)
 		{
-			if (this.selectedIndex !== 0)
+			if (this.selectedKey !== 0)
 			{
 				this.filtersService.addFilter(PendingFilterComponent.filterName, this.filterFunction.bind(this));
 			}
@@ -76,14 +76,14 @@ export class PendingFilterComponent implements OnInit
 	
 	onClear()
 	{
-		this.selectedIndex = 0;
+		this.selectedKey = 0;
 		this.enabled = false;
 		this.onEnable();
 	}
 	
 	filterFunction(video: Video)
 	{
-		return video.pending === (this.selectedIndex === 1 ? false : true);
+		return video.pending === (this.selectedKey === 1 ? false : true);
 	}
 	
 	ngOnDestroy()

@@ -14,8 +14,8 @@ export class DropdownComponent implements OnInit
 	@Input() down = true;
 	@Input() font = '';
 	@Input() size = '20em';
-	@Input() selectedIndex = -1;
-	@Output() selectedIndexChange = new EventEmitter<number>();
+	@Input() selectedKey;
+	@Output() selectedKeyChange = new EventEmitter<number>();
 	open = false;
 	
 	constructor(private renderer: Renderer2, private elRef: ElementRef) {}
@@ -33,16 +33,21 @@ export class DropdownComponent implements OnInit
 	
 	itemClicked(item: {key: number, value: string})
 	{
-		if (item !== this.data[this.selectedIndex])
+		if (item.key !== this.selectedKey)
 		{
-			this.selectedIndex = this.data.indexOf(item);
+			this.selectedKey = item.key;
 			this.open = false;
 			this.onChange();
 		}
 	}
 	
+	getValue(selectedKey: number, data: {key: number, value: string}[])
+	{
+		return typeof selectedKey !== 'undefined' && data.find(dataItem => dataItem.key === selectedKey) ? data.find(dataItem => dataItem.key === selectedKey).value : '';
+	}
+	
 	onChange()
 	{
-		this.selectedIndexChange.emit(this.selectedIndex);
+		this.selectedKeyChange.emit(this.selectedKey);
 	}
 }

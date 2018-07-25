@@ -11,11 +11,11 @@ export class TablePagerService implements OnDestroy
 	
 	totalPages = 0;
 	totalPagesChanged = new Subject<number>();
-	perPageIndex = 2;
+	perPageValue = 50;
 	enabled = true;
 	private videos: Video[] = [];
 	videosChanged = new Subject<Video[]>();
-	currentPageOptionIndex = -1;
+	currentPage = 0;
 	private filteredVideosSubscription: Subscription;
 	
 	constructor(private videoService: VideoService)
@@ -30,9 +30,9 @@ export class TablePagerService implements OnDestroy
 	
 	private computeTotalPages()
 	{
-		this.totalPages = Math.ceil(this.videos.length / this.getPerPageValue());
+		this.totalPages = Math.ceil(this.videos.length / this.perPageValue);
 		this.totalPagesChanged.next(this.totalPages);
-		this.currentPageOptionIndex = this.videos ? 0 : -1;
+		this.currentPage = 1;
 	}
 	
 	setEnabled()
@@ -45,21 +45,11 @@ export class TablePagerService implements OnDestroy
 		const index = this.videos.indexOf(video);
 		if (index !== -1)
 		{
-			const pageNumber = Math.ceil((index + 1) / this.getPerPageValue());
+			const pageNumber = Math.ceil((index + 1) / this.perPageValue);
 			
-			this.currentPageOptionIndex = pageNumber - 1;
+			this.currentPage = pageNumber;
 			this.videosChanged.next(this.getPage());
 		}
-	}
-	
-	getPerPageValue()
-	{
-		return TablePagerService.perPageValues[this.perPageIndex];
-	}
-	
-	getCurrentPageValue()
-	{
-		return this.currentPageOptionIndex + 1;
 	}
 	
 	onPerPageChanged()
@@ -75,35 +65,35 @@ export class TablePagerService implements OnDestroy
 	
 	hasPrevPage()
 	{
-		return this.getCurrentPageValue() > 1;
+		return this.currentPage > 1;
 	}
 	
 	hasNextPage()
 	{
-		return this.getCurrentPageValue() < this.totalPages;
+		return this.currentPage < this.totalPages;
 	}
 	
 	onFirstPage()
 	{
-		this.currentPageOptionIndex = this.videos ? 0 : -1;
+		this.currentPage = 1;
 		this.videosChanged.next(this.getPage());
 	}
 	
 	onPrevPage()
 	{
-		this.currentPageOptionIndex = this.videos ? Math.max(this.currentPageOptionIndex - 1, 0) : -1;
+		this.currentPage = Math.max(this.currentPage - 1, 1);
 		this.videosChanged.next(this.getPage());
 	}
 	
 	onNextPage()
 	{
-		this.currentPageOptionIndex = this.videos ? Math.min(this.currentPageOptionIndex + 1, this.totalPages - 1) : -1;
+		this.currentPage = Math.min(this.currentPage + 1, this.totalPages);
 		this.videosChanged.next(this.getPage());
 	}
 	
 	onLastPage()
 	{
-		this.currentPageOptionIndex = this.videos ? this.totalPages - 1 : -1;
+		this.currentPage = this.totalPages;
 		this.videosChanged.next(this.getPage());
 	}
 	
@@ -111,11 +101,11 @@ export class TablePagerService implements OnDestroy
 	{
 		if (this.enabled)
 		{
-			return this.videos.slice(this.currentPageOptionIndex * this.getPerPageValue(), (this.currentPageOptionIndex + 1) * this.getPerPageValue());
+			return this.videos.slice((this.currentPage - 1) * this.perPageValue, this.currentPage * this.perPageValue);
 		}
 		else
 		{
-			return this.videos;
+			return this.videos.slice();
 		}
 	}
 	

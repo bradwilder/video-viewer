@@ -1,7 +1,7 @@
 <span class="filter-label">Pend</span>
 <div class="filter-bg">
 	<span class="filter-custom-input">
-		<app-dropdown class="type__title--no-upper" [data]="getItems()" [(selectedIndex)]="selectedIndex" (selectedIndexChange)="onChange()" [enabled]="filtersEnabled && enabled" size="7em"></app-dropdown>
+		<app-dropdown class="type__title--no-upper" [data]="getItems()" [(selectedKey)]="selectedKey" (selectedKeyChange)="onChange()" [enabled]="filtersEnabled && enabled" size="7em"></app-dropdown>
 	</span>
 	<span class="filter-btns">
 		<span class="filter-custom-input">

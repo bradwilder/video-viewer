@@ -9,7 +9,7 @@ import { Component, Input, Renderer2, ElementRef, OnInit, EventEmitter, Output, 
 })
 export class DropdownComponent implements OnInit
 {
-	@Input() data: Array<{key: string, value: string}>;
+	@Input() data: {key: number, value: string}[] = [];
 	@Input() enabled = true;
 	@Input() down = true;
 	@Input() font = '';
@@ -31,7 +31,7 @@ export class DropdownComponent implements OnInit
 		});
 	}
 	
-	itemClicked(item: {key: string, value: string})
+	itemClicked(item: {key: number, value: string})
 	{
 		if (item !== this.data[this.selectedIndex])
 		{

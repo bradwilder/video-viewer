@@ -12,7 +12,7 @@ export class TablePagerComponent implements OnDestroy
 {
 	@Input() down = true;
 	totalPagesSubsription: Subscription;
-	currentPageOptions;
+	currentPageOptions = [];
 	
 	constructor(private tablePagerService: TablePagerService)
 	{
